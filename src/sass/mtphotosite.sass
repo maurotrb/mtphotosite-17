@@ -1,0 +1,87 @@
+// Google Fonts
+@import url('https://fonts.googleapis.com/css?family=Kaushan+Script|Rubik:300,400,500,700')
+$family-sans-serif: "Rubik", sans-serif !default
+
+// Bulma initial import
+@import "bulma/sass/utilities/initial-variables"
+
+// Sets my initial variables
+$family-logo: "Kaushan Script"
+
+$link-color: hsl(100, 70%, 55%)
+$link-color-visited: hsl(280, 70%, 55%)
+
+// Sets my derived variables
+$primary: $grey-lighter
+
+$body-background: $grey
+$background: $grey
+
+$border: $grey-dark
+$border-hover: $grey-darker
+
+$text: $grey-lighter
+$text-light: $white-ter
+$text-strong: $grey-light
+
+$link: $link-color
+$link-invert: findColorInvert($link-color)
+$link-visited: $link-color-visited
+$link-hover: $black-ter
+$link-hover-border: $black-ter
+$link-focus: $black-ter
+$link-focus-border: $link-color
+$link-active: $black-ter
+$link-active-border: $grey-darker
+
+// Import the rest of Bulma
+@import "bulma/sass/utilities/_all"
+@import "bulma/sass/base/_all"
+@import "bulma/sass/elements/content"
+@import "bulma/sass/elements/icon"
+@import "bulma/sass/elements/other"
+@import "bulma/sass/elements/tag"
+@import "bulma/sass/elements/title"
+@import "bulma/sass/components/card"
+@import "bulma/sass/components/media"
+@import "bulma/sass/components/nav"
+@import "bulma/sass/grid/columns"
+@import "bulma/sass/layout/footer"
+@import "bulma/sass/layout/section"
+
+///////////////////////
+// Override Bulma style
+///////////////////////
+
+// Site title
+#logo
+  font-family: $family-logo
+  font-size: $size-3
+  +mobile
+    font-size: $size-5
+
+// Title and subtitle color
+.title
+  color: $grey-light
+
+.subtitle
+  color: $grey-lighter
+
+// No shadow on card
+.card
+  box-shadow: none
+
+// Background color must be the same on all used elements
+.nav
+  background-color: $background
+
+.section
+  background-color: $background
+
+.card
+  background-color: $background
+
+.nav-menu
+  +mobile
+    &.nav-right
+      background-color: $background

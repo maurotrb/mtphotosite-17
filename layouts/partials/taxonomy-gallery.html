@@ -1,0 +1,20 @@
+<div class="column is-one-quarter">
+  <div class="card">
+    <div class="card-content">
+      <div class="media">
+        <div class="media-left">
+          <span class="icon"><i class="fa fa-image"></i></span>
+        </div>
+        <div class="media-content">
+          <span><small>{{ .content.Title }}</small></span>
+        </div>
+      </div>
+      <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
+        <a itemprop="contentUrl" href="{{ .content.Permalink }}">
+          <img src="{{ .photosBaseURL }}{{ .content.Params.image_s }}.jpg" itemprop="thumbnail" alt="{{ .content.Title }}" width="{{ .content.Params.image_width_s }}" height="{{ .content.Params.image_height_s }}">
+        </a>
+        <figcaption itemprop="caption description" style="display: none;">{{ .content.Description }}</figcaption>
+      </figure>
+    </div>
+  </div>
+</div>

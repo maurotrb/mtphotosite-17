@@ -1,0 +1,13 @@
++++
+date = "2017-05-06T17:20:00+02:00"
+title = "Published new site"
+tags = [ "news" ]
++++
+
+Today I published my new site.
+
+The previous one was hosted on [SmugMug](https://www.smugmug.com/), and I was very happy with it.
+But the cost of Power plan, necessary to use my own domain, was not justified for an amateur photographer like me.
+Moreover I took the opportunity to merge my portfolio site with my blog that were a self-hosted Wordpress blog.
+
+If you are technically savvy, and you want more information on how I created this site, you can read the [techical about](/technical-about/).

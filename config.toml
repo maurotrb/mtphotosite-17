@@ -1,3 +1,35 @@
-baseURL = "http://example.org/"
+baseURL = "http://www.maurotaraborelliphoto.com/"
 languageCode = "en-us"
-title = "My New Hugo Site"
+title = "Mauro Taraborelli Photography"
+preserveTaxonomyNames = true
+
+[permalinks]
+  blog = "/:section/:year/:month/:title/"
+
+[params]
+  description = "Mauro Taraborelli Photography Portfolio & Blog"
+  author = "Mauro Taraborelli"
+  photosBaseURL = "http://media.maurotaraborelliphoto.com/photos/"
+
+[taxonomies]
+tag = "tags"
+gallery = "galleries"
+phototag = "phototags"
+
+[[menu.main]]
+    name = "home"
+    url = "/"
+    weight = 1
+[[menu.main]]
+    name = "galleries"
+    url = "/galleries/"
+    weight = 2
+[[menu.main]]
+    name = "blog"
+    identifier = "blog"
+    url = "/blog/"
+    weight = 3
+[[menu.main]]
+    name = "about"
+    url = "/about/"
+    weight = 4

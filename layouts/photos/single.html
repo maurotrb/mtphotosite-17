@@ -1,0 +1,61 @@
+{{ partial "header.html" . }}
+{{ $baseURL := .Site.BaseURL }}
+{{ $photosBaseURL := .Site.Params.photosBaseURL }}
+<section class="section">
+  <div class="card">
+    <div class="card-content">
+      <figure itemscope representativeOfPage="true" itemtype="http://schema.org/ImageObject">
+        <img src="{{ $photosBaseURL }}{{ .Params.image_xl }}.jpg" alt="{{ .Title }}" width="{{ .Params.image_width_xl }}" height="{{ .Params.image_height_xl }}">
+        <figcaption itemprop="caption description" style="display: none;">{{ .Description }}</figcaption>
+      </figure>
+      <div class="media">
+        <div class="media-left">
+          <span class="icon"><i class="fa fa-image"></i></span>
+        </div>
+        <div class="media-content">
+          <p class="title is-4">{{ .Title }}</p>
+          <p>{{ .Params.description }}</p>
+        </div>
+      </div>
+      <div class="media">
+        <div class="media-left">
+          <span class="icon"><i class="fa fa-clock-o"></i></span>
+        </div>
+        <div class="media-content">
+          {{ .Date.Format "2006-01-01 15:04:05" }}
+        </div>
+      </div>
+      {{ if isset .Params "gps_latitude" }}
+      <div class="media">
+        <div class="media-left">
+          <span class="icon"><i class="fa fa-map-marker"></i></span>
+        </div>
+        <div class="media-content">
+          <small><a href="http://www.google.com/maps/place/{{ .Params.gps_latitude }},{{ .Params.gps_longitude }}">Latitude {{ .Params.gps_latitude }}, Longitude {{ .Params.gps_longitude }}</a></small>
+        </div>
+      </div>
+      {{ end }}
+      <div class="media">
+        <div class="media-left">
+          <span class="icon"><i class="fa fa-th"></i></span>
+        </div>
+        <div class="media-content">
+          {{ range .Params.galleries }}
+          <span class="tag"><a href="{{ $baseURL }}galleries/{{ . | urlize }}">{{ . }}</a></span>
+          {{ end }}
+        </div>
+      </div>
+      <div class="media">
+        <div class="media-left">
+          <span class="icon"><i class="fa fa-tags"></i></span>
+        </div>
+        <div class="media-content">
+          {{ range .Params.phototags }}
+          <span class="tag"><a href="{{ $baseURL }}phototags/{{ . | urlize }}">{{ . }}</a></span>
+          {{ end }}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{{ partial "footer.html" . }}

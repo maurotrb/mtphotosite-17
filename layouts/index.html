@@ -1,0 +1,27 @@
+{{ partial "header.html" . }}
+{{ $baseURL := .Site.BaseURL }}
+{{ $photosBaseURL := .Site.Params.photosBaseURL }}
+<section class="section">
+  <div itemscope itemtype="http://schema.org/ImageGallery">
+    <div class="content">
+      {{ .Content }}
+    </div>
+    <div class="columns is-multiline is-gapless">
+      {{ range .Site.Taxonomies.phototags.Tenset }}
+      <div class="column is-one-quarter">
+        <div class="card">
+          <div class="card-content">
+            <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
+              <a itemprop="contentUrl" href="{{ .Page.RelPermalink }}">
+                <img src="{{ $photosBaseURL }}{{ .Page.Params.image_s }}.jpg" itemprop="thumbnail" alt="{{ .Page.Title }}" width="{{ .Page.Params.image_width_s }}" height="{{ .Page.Params.image_height_s }}">
+              </a>
+              <figcaption itemprop="caption description" style="display: none;">{{ .Page.Description }}</figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ partial "footer.html" . }}

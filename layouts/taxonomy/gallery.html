@@ -1,0 +1,24 @@
+{{ partial "header.html" . }}
+{{ $baseURL := .Site.BaseURL }}
+{{ $photosBaseURL := .Site.Params.photosBaseURL }}
+<section class="section">
+  <div class="heading">
+    <h1 class="title is-1"><strong>{{ .Title }}</strong></h1>
+    <h2 class="subtitle">Gallery that contains {{ len .Data.Pages }} photos</h2>
+  </div>
+</section>
+{{ if (len .Content) "!=" 0}}
+<section class="section">
+  <div class="content">{{ .Content }}</div>
+</section>
+{{ end }}
+<section class="section">
+  <div itemscope itemtype="http://schema.org/ImageGallery">
+    <div class="columns is-multiline">
+      {{ range .Data.Pages.ByDate.Reverse }}
+      {{ partial "taxonomy-gallery.html" (dict "content" . "photosBaseURL" $photosBaseURL) }}
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ partial "footer.html" . }}
