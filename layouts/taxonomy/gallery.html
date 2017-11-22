@@ -1,24 +1,22 @@
-{{ partial "header.html" . }}
+{{ define "main" }}
 {{ $baseURL := .Site.BaseURL }}
 {{ $photosBaseURL := .Site.Params.photosBaseURL }}
-<section class="section">
-  <div class="heading">
-    <h1 class="title is-1"><strong>{{ .Title }}</strong></h1>
-    <h2 class="subtitle">Gallery that contains {{ len .Data.Pages }} photos</h2>
-  </div>
-</section>
-{{ if (len .Content) "!=" 0}}
-<section class="section">
-  <div class="content">{{ .Content }}</div>
-</section>
-{{ end }}
-<section class="section">
-  <div itemscope itemtype="http://schema.org/ImageGallery">
-    <div class="columns is-multiline">
+<main>
+  <header class="section">
+    <h1 class="title is-1">{{ .Title }}</h1>
+    <h2 class="subtitle is-3">Gallery with {{ len .Data.Pages }} photos</h2>
+  </header>
+  {{ if (len .Content) "!=" 0}}
+  <section class="section">
+    <div class="content">{{ .Content }}</div>
+  </section>
+  {{ end }}
+  <section class="section" itemscope itemtype="http://schema.org/ImageGallery">
+    <div class="columns is-centered is-vcentered is-multiline">
       {{ range .Data.Pages.ByDate.Reverse }}
-      {{ partial "taxonomy-gallery.html" (dict "content" . "photosBaseURL" $photosBaseURL) }}
+      {{ partial "photo-thumb.html" (dict "content" . "photosBaseURL" $photosBaseURL) }}
       {{ end }}
     </div>
-  </div>
-</section>
-{{ partial "footer.html" . }}
+  </section>
+</main>
+{{ end }}

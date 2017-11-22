@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html class="has-navbar-fixed-top" lang="{{ .Site.LanguageCode | default "en-us" }}">
+  <head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-77904781-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-77904781-1', { 'anonymize_ip': true });
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>{{ .Title }}</title>
+    {{ with .Site.Params.description }}<meta name="description" content="{{ . }}">{{ end }}
+    {{ with .Site.Params.author }}<meta name="author" content="{{ . }}">{{ end }}
+    <link rel="stylesheet" href="{{ .Site.BaseURL }}css/mtphotosite.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    {{ if .RSSLink -}}<link href="{{ .RSSLink }}" rel="feed" type="application/rss+xml" title="{{ .Site.Title }}">{{- end }}
+    {{ .Hugo.Generator }}
+  </head>
+  <body>
+    <header>
+      <nav class="navbar is-fixed-top">
+        <div class="navbar-brand">
+          <a class="navbar-item" id="logo" href="{{ .Site.BaseURL }}">{{ .Site.Title }}</a>
+          <button class="button navbar-burger" data-target="navMenu">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+        <div id="navMenu" class="navbar-menu">
+	  {{ range .Site.Menus.main }}
+	  <a class="navbar-item" href="{{ .URL }}">{{ upper .Name }}</a>
+          {{end}}
+	</div>
+      </nav>
+    </header>
+    {{ block "main" . }}
+    <main class="section">
+    </main>
+    {{ end }}
+    <footer class="footer">
+      <div class="content has-text-centered">
+        <p>
+          <span class="icon"><i class="fa fa-copyright"></i></span> {{ now.Year }} {{ .Site.Params.author }}. Powered by <a href="http://gohugo.io">Hugo</a> and <a href="http://bulma.io">Bulma</a>.
+        </p>
+        <p>
+          <a class="icon" href="http://www.instagram.com/maurotrbphoto/"><i class="fa fa-instagram"></i></a>
+          <a class="icon" href="http://www.flickr.com/photos/maurot/"><i class="fa fa-flickr"></i></a>
+        </p>
+      </div>
+    </footer>
+    <script src="/js/mtphotosite.js"></script>
+  </body>
+</html>

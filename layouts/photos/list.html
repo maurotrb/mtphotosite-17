@@ -1,49 +1,28 @@
-{{ partial "header.html" . }}
+{{ define "main" }}
 {{ $baseURL := .Site.BaseURL }}
 {{ $photosBaseURL := .Site.Params.photosBaseURL }}
-<section class="section">
-  <div class="heading">
-    <h1 class="title is-1"><strong>{{ .Title }}</strong></h1>
-    <h2 class="subtitle">All {{ len .Data.Pages }} photos by month</h2>
-  </div>
-</section>
-{{ if (len .Content) "!=" 0}}
-<section class="section">
-  <div class="content">{{ .Content }}</div>
-</section>
-{{ end }}
-{{ range .Data.Pages.GroupByDate "January 2006" }}
-<section class="section">
-  <div itemscope itemtype="http://schema.org/ImageGallery">
-    <div class="heading">
-      <h1 class="title is-3"><strong>{{ .Key }}</strong></h1>
-      <h2 class="subtitle is-6"><small>{{ len .Pages }} photos</small></h2>
-    </div>
-    <div class="columns is-multiline">
+<main>
+  <header class="section">
+    <h1 class="title is-1">{{ .Title }}</h1>
+    <h2 class="subtitle is-3">All {{ len .Data.Pages }} photos by month</h2>
+  </header>
+  {{ if (len .Content) "!=" 0}}
+  <section class="section">
+    <div class="content">{{ .Content }}</div>
+  </section>
+  {{ end }}
+  {{ range .Data.Pages.GroupByDate "January 2006" }}
+  <header class="section has-text-centered">
+    <h3 class="title is-2">{{ .Key }}</h3>
+    <h4 class="subtitle is-4">{{ len .Pages }} photos</h4>
+  </header>
+  <section class="section" itemscope itemtype="http://schema.org/ImageGallery">
+    <div class="columns is-centered is-vcentered is-multiline">
       {{ range .Pages.ByDate.Reverse }}
-      <div class="column is-one-quarter">
-        <div class="card">
-          <div class="card-content">
-            <div class="media">
-              <div class="media-left">
-                <span class="icon"><i class="fa fa-image"></i></span>
-              </div>
-              <div class="media-content">
-                <span><small>{{ .Title }}</small></span>
-              </div>
-            </div>
-            <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
-              <a itemprop="contentUrl" href="{{ .Permalink }}">
-                <img src="{{ $photosBaseURL }}{{ .Params.image_s }}.jpg" itemprop="thumbnail" alt="{{ .Title }}" width="{{ .Params.image_width_s }}" height="{{ .Params.image_height_s }}">
-              </a>
-              <figcaption itemprop="caption description" style="display: none;">{{ .Description }}</figcaption>
-            </figure>
-          </div>
-        </div>
-      </div>
+      {{ partial "photo-thumb.html" (dict "content" . "photosBaseURL" $photosBaseURL) }}
       {{ end }}
     </div>
-  </div>
-</section>
+  </section>
+  {{ end }}
+</main>
 {{ end }}
-{{ partial "footer.html" . }}

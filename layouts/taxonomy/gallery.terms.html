@@ -1,19 +1,19 @@
-{{ partial "header.html" . }}
+{{ define "main" }}
 {{ $baseURL := .Site.BaseURL }}
 {{ $photosBaseURL := .Site.Params.photosBaseURL }}
-<section class="section">
-  <div class="heading">
-    <h1 class="title is-1"><strong>{{ .Title }}</strong></h1>
-    <h2 class="subtitle">{{ len .Data.Terms }} galleries listed</h2>
-  </div>
-</section>
-<section class="section">
-  <div class="columns is-multiline">
-    {{ $data := .Data }}
-    {{ range $key, $value := .Data.Terms.Alphabetical }}
-    {{ $cover := index $value.Pages.ByDate.Reverse 0 }}
-    {{ partial "terms-gallery.html" (dict "content" . "photosBaseURL" $photosBaseURL "data" $data "key" $key "value" $value "cover" $cover) }}
-    {{ end }}
-  </div>
-</section>
-{{ partial "footer.html" . }}
+<main>
+  <header class="section">
+    <h1 class="title is-1">{{ .Title }}</h1>
+    <h2 class="subtitle is-3">{{ len .Data.Terms }} galleries listed</h2>
+  </header>
+  <section class="section">
+    <div class="columns is-centered is-vcentered is-multiline">
+      {{ $data := .Data }}
+      {{ range $key, $value := .Data.Terms.Alphabetical }}
+      {{ $cover := index $value.Pages.ByDate.Reverse 0 }}
+      {{ partial "gallery-thumb.html" (dict "content" . "baseURL" $baseURL "photosBaseURL" $photosBaseURL "data" $data "key" $key "value" $value "cover" $cover) }}
+      {{ end }}
+    </div>
+  </section>
+</main>
+{{ end }}

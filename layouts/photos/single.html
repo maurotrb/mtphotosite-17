@@ -1,22 +1,21 @@
-{{ partial "header.html" . }}
+{{ define "main" }}
 {{ $baseURL := .Site.BaseURL }}
 {{ $photosBaseURL := .Site.Params.photosBaseURL }}
-<section class="section">
-  <div class="card">
-    <div class="card-content">
+<main>
+  <section class="hero">
+    <div class="hero-body container has-text-centered">
       <figure itemscope representativeOfPage="true" itemtype="http://schema.org/ImageObject">
         <img src="{{ $photosBaseURL }}{{ .Params.image_xl }}.jpg" alt="{{ .Title }}" width="{{ .Params.image_width_xl }}" height="{{ .Params.image_height_xl }}">
         <figcaption itemprop="caption description" style="display: none;">{{ .Description }}</figcaption>
       </figure>
-      <div class="media">
-        <div class="media-left">
-          <span class="icon"><i class="fa fa-image"></i></span>
-        </div>
-        <div class="media-content">
-          <p class="title is-4">{{ .Title }}</p>
-          <p>{{ .Params.description }}</p>
-        </div>
-      </div>
+      <header>
+        <h1 class="title is-4 is-spaced">{{ .Title }}</h1>
+        <h2 class="subtitle is-6">{{ .Params.description }}</h2>
+      </header>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container">
       <div class="media">
         <div class="media-left">
           <span class="icon"><i class="fa fa-clock-o"></i></span>
@@ -56,6 +55,6 @@
         </div>
       </div>
     </div>
-  </div>
-</section>
-{{ partial "footer.html" . }}
+  </section>
+</main>
+{{ end }}

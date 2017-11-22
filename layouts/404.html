@@ -1,16 +1,14 @@
-{{ partial "header.html" . }}
-<section class="section">
+{{ define "main" }}
+<main class="section">
   <div class="container">
-    <div class="heading">
-      <h1 class="title is-1"><strong>{{ .Title }}</strong></h1>
-    </div>
+    <header class="section">
+      <h1 class="title is-1">{{ .Title }}</h1>
+    </header>
+    <section class="section">
+      <div class="content is-large">
+        I'm sorry, but the page doesn't exist. You can go back to the <a href="/">home page</a>, browse the <a href="/galleries/">galleries</a>, the <a href="/phototags/">photo tags</a>, or the entire <a href="/photos/">content</a>.
+      </div>
+    </section>
   </div>
-</section>
-<section class="section">
-  <div class="container">
-    <div class="content is-large">
-      I'm sorry, but the page doesn't exist. You can go back to the <a href="/">home page</a>, browse the <a href="/galleries/">galleries</a>, the <a href="/phototags/">photo tags</a>, or the entire <a href="/photos/">content</a>.
-    </div>
-  </div>
-</section>
-{{ partial "footer.html" . }}
+</main>
+{{ end }}
