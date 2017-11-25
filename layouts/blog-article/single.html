@@ -1,0 +1,33 @@
+{{ define "main" }}
+{{ $baseURL := .Site.BaseURL }}
+{{ $photosBaseURL := .Site.Params.photosBaseURL }}
+<div class="container">
+  <div class="columns">
+    <div class="column is-four-fifths">
+      <main>
+        <header class="section">
+          <h1 class="title is-1">{{ .Title }}</h1>
+          <p class="subtitle is-4">
+            <span class="icon"><i class="fa fa-clock-o"></i></span>
+            <span>{{ .Date.Format "Jan 2, 2006" }}</span>
+            <span class="icon"><i class="fa fa-newspaper-o"></i></span>
+            <span>Article of {{ .FuzzyWordCount }} words</span>
+            {{ partial "blog-tagline" . }}
+          </p>
+        </header>
+        <article class="section">
+          <div class="content is-medium">
+            {{ .Content }}
+          </div>
+        </article>
+      </main>
+    </div>
+    <div class="column">
+      <aside id="sidebar">
+        {{ partial "mini-about" . }}
+        {{ partial "blog-explore" . }}
+      </aside>
+    </div>
+  </div>
+</div>
+{{ end }}

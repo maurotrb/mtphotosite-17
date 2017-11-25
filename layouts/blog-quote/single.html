@@ -1,0 +1,50 @@
+{{ define "main" }}
+{{ $baseURL := .Site.BaseURL }}
+<div class="container">
+  <div class="columns">
+    <div class="column is-four-fifths">
+      <main>
+        <header class="section">
+          <h1 class="title is-1">{{ .Title }}</h1>
+          <p class="subtitle is-5">
+            <span class="icon"><i class="fa fa-clock-o"></i></span>
+            <span>{{ .Date.Format "Jan 2, 2006" }}</span>
+            <span class="icon"><i class="fa fa-quote-left"></i></span>
+            <span>Quote</span>
+            {{ partial "blog-tagline" . }}
+          </p>
+        </header>
+        <article class="section">
+          <div class="content is-large">
+            <blockquote>
+              <p>{{ .Content }}</p>
+              <footer>
+                <cite>
+                  <span class="author">{{ .Params.author }}</span>
+                  {{ if isset .Params "source" }}
+                  — {{ .Params.source }}
+                  {{ else if isset .Params "link" }}
+                  — <a href="{{ .Params.link }}">
+                    {{ if isset .Params "source_link_title" }}
+                    {{ .Params.source_link_title | markdownify }}
+                    {{ else }}
+                    {{ .Params.link }}
+                    {{ end }}
+                  </a>
+                  {{ end }}
+                </cite>
+              </footer>
+            </blockquote>
+          </div>
+        </article>
+      </main>
+    </div>
+    <div class="column">
+      <aside id="sidebar">
+        {{ partial "mini-about" . }}
+        {{ partial "blog-explore" . }}
+      </aside>
+    </div>
+  </div>
+</div>
+{{ end }}

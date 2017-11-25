@@ -1,0 +1,8 @@
+<section class="section" id="tags">
+  <h1 class="title is-3">Explore</h1>
+  <div class="tags">
+    {{ range $key, $value := .Site.Taxonomies.tags.ByCount }}
+    <span class="tag is-large"><a href="/tags/{{ $value.Name | urlize }}">{{ $value.Name }} ({{ $value.Count }})</a></span>
+    {{ end }}
+  </div>
+</section>

@@ -1,0 +1,45 @@
+{{ define "main" }}
+{{ $baseURL := .Site.BaseURL }}
+{{ $photosBaseURL := .Site.Params.photosBaseURL }}
+<div class="container">
+  <div class="columns">
+    <div class="column is-four-fifths">
+      <main>
+        <header class="section">
+          <h1 class="title is-1">{{ .Title }}</h1>
+          <p class="subtitle is-4">
+            <span class="icon"><i class="fa fa-clock-o"></i></span>
+            <span>{{ .Date.Format "Jan 2, 2006" }}</span>
+            <span class="icon"><i class="fa fa-image"></i></span>
+            <span>Photo</span>
+            {{ partial "blog-tagline" . }}
+          </p>
+        </header>
+        {{ with .Site.GetPage "page" "photos" .Params.photopage }}
+        <section class="section level">
+          <div class="level-item">
+            <a href="{{ .RelPermalink }}">
+              <figure itemscope representativeOfPage="true" itemtype="http://schema.org/ImageObject">
+                <img src="{{ $photosBaseURL }}{{ .Params.image_xl }}.jpg" alt="{{ .Title }}" width="{{ .Params.image_width_xl }}" height="{{ .Params.image_height_xl }}">
+                <figcaption itemprop="caption description" style="display: none;">{{ .Description }}</figcaption>
+              </figure>
+            </a>
+          </div>
+        </section>
+        {{ end }}
+        <article class="section">
+          <div class="content is-medium">
+            {{ .Content }}
+          </div>
+        </article>
+      </main>
+    </div>
+    <div class="column">
+      <aside id="sidebar">
+        {{ partial "mini-about" . }}
+        {{ partial "blog-explore" . }}
+      </aside>
+    </div>
+  </div>
+</div>
+{{ end }}

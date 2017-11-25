@@ -1,0 +1,31 @@
+{{ $photosBaseURL := .Site.Params.photosBaseURL }}
+<header>
+  <h2 class="title is-3"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+  <p class="subtitle is-6">
+    <span class="icon"><i class="fa fa-clock-o"></i></span>
+    <span>{{ .Date.Format "Jan 2, 2006" }}</span>
+    <span class="icon"><i class="fa fa-image"></i></span>
+    <span>Photo</span>
+    {{ partial "blog-tagline" . }}
+  </p>
+</header>
+{{ with .Site.GetPage "page" "photos" .Params.photopage }}
+<section class="level">
+  <div class="level-item">
+    <a href="{{ .RelPermalink }}">
+      <figure itemscope representativeOfPage="true" itemtype="http://schema.org/ImageObject">
+        <img src="{{ $photosBaseURL }}{{ .Params.image_xl }}.jpg" alt="{{ .Title }}" width="{{ .Params.image_width_xl }}" height="{{ .Params.image_height_xl }}">
+        <figcaption itemprop="caption description" style="display: none;">{{ .Description }}</figcaption>
+      </figure>
+    </a>
+  </div>
+</section>
+{{ end }}
+<section>
+  <div class="content">
+    {{ .Summary }}
+    {{ if .Truncated }}
+    <a href="{{ .RelPermalink }}">Read more...</a>
+    {{ end }}
+  </div>
+</section>

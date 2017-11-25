@@ -20,6 +20,7 @@ $body-background-color: $background
 $border: $grey-dark
 $border-hover: $grey-darker
 $card-background-color: $background
+$content-blockquote-background-color: $grey-darker
 $link-color: hsl(100, 70%, 55%)
 $link-color-visited: hsl(280, 70%, 55%)
 $link: $link-color
@@ -79,3 +80,8 @@ $column-gap: 2rem
 +touch
   .navbar-menu
     background-color: $background
+
+blockquote
+  a
+    &:hover
+      color: $grey
