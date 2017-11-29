@@ -44,4 +44,4 @@ Contacts
 --------
 For question and comments:
 
-- [MauroTaraborelli@gmail.com](mailto:MauroTaraborelli@gmail.com)
+- [mauro@maurotaraborelliphoto.com](mailto:mauro@maurotaraborelliphoto.com)
