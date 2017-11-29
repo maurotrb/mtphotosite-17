@@ -9,3 +9,5 @@ This site has been made possible thanks to:
 - [S3](https://aws.amazon.com/s3/) hosting
 - Oswald and Kaushan Script fonts served by [Google Fonts](https://fonts.google.com/)
 - [Font Awesome](http://fontawesome.io/) icons
+
+Website source available on [GitHub](https://github.com/maurotrb/mtphotosite-17).
