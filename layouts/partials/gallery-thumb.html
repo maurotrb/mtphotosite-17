@@ -1,10 +1,10 @@
 <div class="column is-one-quarter has-text-centered">
   <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
-    <a itemprop="contentUrl" href="{{ .baseURL }}{{ .data.Plural }}/{{ .value.Name | urlize }}">
-      <img src="{{ .photosBaseURL }}{{ .cover.Params.image_s }}.jpg" itemprop="thumbnail" alt="{{ .value.Name }}" width="{{ .cover.Params.image_width_s }}" height="{{ .cover.Params.image_height_s }}">
+    <a itemprop="contentUrl" href="{{ .content.Page.Permalink }}">
+      <img src="{{ .photosBaseURL }}{{ .cover.Params.image_s }}.jpg" itemprop="thumbnail" alt="{{ .content.Page.Title }}" width="{{ .cover.Params.image_width_s }}" height="{{ .cover.Params.image_height_s }}">
     </a>
-    <figcaption itemprop="caption description" style="display: none;">{{ .value.Name }}</figcaption>
+    <figcaption itemprop="caption description" style="display: none;">{{ .content.Page.Title }}</figcaption>
   </figure>
   <span class="icon"><i class="fa fa-th"></i></span>
-  <span class="content">{{ .value.Name }} ({{ .value.Count }} photos)</span>
+  <span class="content">{{ .content.Page.Title }} ({{ .content.Count }} photos)</span>
 </div>

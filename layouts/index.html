@@ -7,7 +7,7 @@
   </section>
   <section itemscope itemtype="http://schema.org/ImageGallery">
     <div class="columns is-centered is-vcentered is-multiline">
-      {{ range .Site.Taxonomies.phototags.Tenset }}
+      {{ range .Site.Taxonomies.phototags.tenset }}
       {{ partial "photo-thumb.html" (dict "content" . "photosBaseURL" $photosBaseURL) }}
       {{ end }}
     </div>

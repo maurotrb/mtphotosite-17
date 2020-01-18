@@ -11,7 +11,7 @@
       {{ $data := .Data }}
       {{ range $key, $value := .Data.Terms.ByCount }}
       {{ $cover := index $value.Pages.ByDate.Reverse 0 }}
-      {{ partial "gallery-thumb.html" (dict "content" . "baseURL" $baseURL "photosBaseURL" $photosBaseURL "data" $data "key" $key "value" $value "cover" $cover) }}
+      {{ partial "gallery-thumb.html" (dict "content" . "photosBaseURL" $photosBaseURL "cover" $cover) }}
       {{ end }}
     </div>
   </section>
