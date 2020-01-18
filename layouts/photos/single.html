@@ -5,7 +5,7 @@
   <section class="hero">
     <div class="hero-body container has-text-centered">
       <figure itemscope representativeOfPage="true" itemtype="http://schema.org/ImageObject">
-        <img src="{{ $photosBaseURL }}{{ .Params.image_xl }}.jpg" alt="{{ .Title }}" width="{{ .Params.image_width_xl }}" height="{{ .Params.image_height_xl }}">
+        <img class="has-frame" src="{{ $photosBaseURL }}{{ .Params.image_xl }}.jpg" alt="{{ .Title }}" width="{{ .Params.image_width_xl }}" height="{{ .Params.image_height_xl }}">
         <figcaption itemprop="caption description" style="display: none;">{{ .Description }}</figcaption>
       </figure>
       <header>
@@ -24,7 +24,7 @@
           {{ .Date.Format "2006-01-01 15:04:05" }}
         </div>
       </div>
-      {{ if isset .Params "gps_latitude" }}
+      {{ if (and (isset .Params "gps_latitude") (ne .Params.gps_latitude "")) }}
       <div class="media">
         <div class="media-left">
           <span class="icon"><i class="fa fa-map-marker"></i></span>
