@@ -1,7 +1,6 @@
 baseURL = "https://www.maurotaraborelliphoto.com/"
 languageCode = "en-us"
 title = "Mauro Taraborelli Photography"
-preserveTaxonomyNames = true
 
 [permalinks]
 blog = "/:section/:year/:month/:title/"
