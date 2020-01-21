@@ -1,7 +1,7 @@
 #!/usr/bin/env stack
 {- stack
   script
-  --resolver lts-8.13
+  --resolver lts-14.20
   --package bytestring
   --package containers
   --package cassava
@@ -21,9 +21,9 @@ import qualified Data.Text as T
 import qualified Data.Text.IO as TIO
 import qualified Data.Vector as V
 
-{- Lightroom Metadata -}
+{- Digikam Metadata -}
 
-data ImageLightroomMetadata = ILM
+data ImageDigikamMetadata = IDM
   { image            :: T.Text
   , capture_time     :: T.Text
   , gps_latitude     :: T.Text
@@ -98,8 +98,8 @@ fmToWrite (FM t d dt im is iws ihs ixl iwxl ihxl gla glo gs ts) = T.concat [ "++
                                                                            , "image_height_xl = \"", ihxl, "\"\n"
                                                                            , "gps_latitude = \"", gla, "\"\n"
                                                                            , "gps_longitude = \"", glo, "\"\n"
-                                                                           , "phototags = [ \"", (T.intercalate "\", \"" ts), "\" ]\n"
-                                                                           , "galleries = [ \"", (T.intercalate "\", \"" gs), "\" ]\n"
+                                                                           , "phototags = [ \"", T.intercalate "\", \"" ts, "\" ]\n"
+                                                                           , "galleries = [ \"", T.intercalate "\", \"" gs, "\" ]\n"
                                                                            , "+++\n"
                                                                            ]
   where
@@ -107,14 +107,14 @@ fmToWrite (FM t d dt im is iws ihs ixl iwxl ihxl gla glo gs ts) = T.concat [ "++
 
 {- Merge -}
 
-type IlmMap   = Map.Map T.Text ImageLightroomMetadata
+type IdmMap   = Map.Map T.Text ImageDigikamMetadata
 type IpssMap  = Map.Map T.Text ImagePixelSizeS
 type IpsxlMap = Map.Map T.Text ImagePixelSizeXL
 type IpsmMap  = Map.Map T.Text ImagePixelSizeMerged
 type FmMap    = Map.Map T.Text FrontMatter
 
-ilmToMap :: IlmMap -> ImageLightroomMetadata -> IlmMap
-ilmToMap m ilm@(ILM i _ _ _ _ _ _ _) = Map.insert i ilm m
+idmToMap :: IdmMap -> ImageDigikamMetadata -> IdmMap
+idmToMap m idm = Map.insert (image idm) idm m
 
 ipsToIpssMap :: IpssMap -> ImagePixelSize -> IpssMap
 ipsToIpssMap m (IPS it iw ih) = case ts of "s" -> Map.insert im (IPSS it iw ih) m
@@ -131,38 +131,38 @@ ipsToIpsxlMap m (IPS it iw ih) = case ts of "xl" -> Map.insert im (IPSXL it iw i
     im      = T.dropEnd 1 i
 
 mergeToIpsmMap :: IpssMap -> IpsxlMap -> IpsmMap
-mergeToIpsmMap sm xlm = Map.intersectionWithKey wmatch sm xlm
+mergeToIpsmMap = Map.intersectionWithKey wmatch
   where
-    wmatch i (IPSS is iws ihs) (IPSXL ixl iwxl ihxl) = (IPSM is iws ihs ixl iwxl ihxl)
+    wmatch i (IPSS is iws ihs) (IPSXL ixl iwxl ihxl) = IPSM is iws ihs ixl iwxl ihxl
 
-mergeToFmMap :: IlmMap -> IpsmMap -> FmMap
-mergeToFmMap ilmm ipsmm = Map.intersectionWithKey wmatch ilmm ipsmm
+mergeToFmMap :: IdmMap -> IpsmMap -> FmMap
+mergeToFmMap = Map.intersectionWithKey wmatch
   where
-    wmatch  i (ILM im ct glat glon t cap tags gals) (IPSM is iws ihs ixl iwxl ihxl) = (FM t cap ct im is iws ihs ixl iwxl ihxl glat glon (T.splitOn "|" gals) (T.splitOn "|" tags))
+    wmatch  i (IDM im ct glat glon t cap tags gals) (IPSM is iws ihs ixl iwxl ihxl) = FM t cap ct im is iws ihs ixl iwxl ihxl glat glon (T.splitOn "|" gals) (T.splitOn "|" tags)
 
-toFM :: V.Vector ImageLightroomMetadata -> V.Vector ImagePixelSize -> V.Vector FrontMatter
-toFM ilmd ips = Map.foldl' V.snoc V.empty
-                $ mergeToFmMap (V.foldl' ilmToMap Map.empty ilmd)
+toFM :: V.Vector ImageDigikamMetadata -> V.Vector ImagePixelSize -> V.Vector FrontMatter
+toFM idmd ips = Map.foldl' V.snoc V.empty
+                $ mergeToFmMap (V.foldl' idmToMap Map.empty idmd)
                 $ mergeToIpsmMap (V.foldl' ipsToIpssMap Map.empty ips) (V.foldl' ipsToIpsxlMap Map.empty ips)
 
 {- CSV -}
-instance FromNamedRecord ImageLightroomMetadata
-instance ToNamedRecord ImageLightroomMetadata
+instance FromNamedRecord ImageDigikamMetadata
+instance ToNamedRecord ImageDigikamMetadata
 
 instance FromNamedRecord ImagePixelSize
 instance ToNamedRecord ImagePixelSize
 
-type CsvImageLightroomMetadata = (Header, V.Vector ImageLightroomMetadata)
-type CsvImagePixelSize         = (Header, V.Vector ImagePixelSize)
+type CsvImageDigikamMetadata = (Header, V.Vector ImageDigikamMetadata)
+type CsvImagePixelSize       = (Header, V.Vector ImagePixelSize)
 type ErrorMsg = String
 
-csvPath                       = "./"
-csvImageLightroomMetadataFile = "ImageLightroomMetadata.csv"
-csvImagePixelSizeFile         = "ImagePixelSize.csv"
-photoPagesPath                = "../content/photos/"
+csvPath                     = "./src/"
+csvImageDigikamMetadataFile = "images-digikam-metadata.csv"
+csvImagePixelSizeFile       = "images-pixel-size.csv"
+photoPagesPath              = "./content/photos/"
 
-parseImageLightroomMetadataCSV :: FilePath -> IO (Either ErrorMsg CsvImageLightroomMetadata)
-parseImageLightroomMetadataCSV fname = do
+parseImageDigikamMetadataCSV :: FilePath -> IO (Either ErrorMsg CsvImageDigikamMetadata)
+parseImageDigikamMetadataCSV fname = do
   contents <- BL.readFile fname
   return $ CSV.decodeByName contents
 
@@ -171,17 +171,11 @@ parseImagePixelSizeCSV fname = do
   contents <- BL.readFile fname
   return $ CSV.decodeByName contents
 
-createFrontMatter :: (Either ErrorMsg CsvImageLightroomMetadata) -> (Either ErrorMsg CsvImagePixelSize) -> (Either ErrorMsg (V.Vector FrontMatter))
-createFrontMatter (Left e1)        (Left e2)        = Left $ e1 ++ e2
-createFrontMatter (Left e)         _                = Left e
-createFrontMatter _                (Left e)         = Left e
-createFrontMatter (Right (_, ilm)) (Right (_, ips)) = Right $ toFM ilm ips
-
 writeFrontMatter:: FrontMatter -> IO ()
-writeFrontMatter fm@(FM _ _ _ im _ _ _ _ _ _ _ _ _ _) = TIO.writeFile (photoPagesPath ++ (T.unpack im) ++ ".md") $ fmToWrite fm
+writeFrontMatter fm = TIO.writeFile (photoPagesPath ++ T.unpack (image_FM fm) ++ ".md") $ fmToWrite fm
 
 main :: IO()
 main = do
-  csvILM <- parseImageLightroomMetadataCSV (csvPath ++ csvImageLightroomMetadataFile)
+  csvIDM <- parseImageDigikamMetadataCSV (csvPath ++ csvImageDigikamMetadataFile)
   csvIPS <- parseImagePixelSizeCSV (csvPath ++ csvImagePixelSizeFile)
-  either (print) (V.mapM_ writeFrontMatter) $ createFrontMatter csvILM csvIPS
+  either print (V.mapM_ writeFrontMatter) $ toFM <$> (snd <$> csvIDM) <*> (snd <$> csvIPS)
