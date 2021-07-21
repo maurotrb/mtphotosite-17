@@ -6,7 +6,7 @@
     <h1 class="title is-1">{{ .Title }}</h1>
     <h2 class="subtitle is-3">Gallery with {{ len .Data.Pages }} photos</h2>
   </header>
-  {{ if (len .Content) "!=" 0}}
+  {{ if .Content }}
   <section class="section">
     <div class="content">{{ .Content }}</div>
   </section>
