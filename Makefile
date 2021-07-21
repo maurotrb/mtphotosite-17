@@ -3,7 +3,8 @@
 #========================
 
 css-prereq      = ./src/sass/mtphotosite.sass
-css-proc        = sassc
+# Dart Saas
+css-proc        = sass
 css-target      = ./static/css/mtphotosite.min.css
 public-dir      = ./public
 img-local-dir   = ~/lib/photography/derivatives/mauro/web/maurotaraborelliphoto.com
@@ -20,8 +21,8 @@ site-proc       = hugo -v
 all: site
 
 $(css-target): $(css-prereq)
-	@echo -e "Creating minified css file...\t\t\t\c"
-	@$(css-proc) -t compressed $(css-prereq):$(css-target)
+	@echo -e "Creating minified css file...\t\t\c"
+	@$(css-proc) -s compressed $(css-prereq):$(css-target)
 	@echo -e "[ Done ]"
 
 site: $(css-target)
@@ -33,7 +34,7 @@ site: $(css-target)
 	@echo -e "Site created."
 
 deploy: site
-	@echo -e "Deploying site to S3...\t\t\t\c"
+	@echo -e "Deploying site to S3...\t\t\c"
 	@aws s3 sync public/ s3://$(s3-bucket)/ --profile maurotaraborelliphotosite --acl public-read --storage-class REDUCED_REDUNDANCY --delete
 	@echo -e "[Done]"
 
