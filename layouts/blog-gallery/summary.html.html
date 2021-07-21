@@ -12,7 +12,7 @@
 <section class="section" itemscope itemtype="http://schema.org/ImageGallery">
   <div class="columns is-variable is-1 is-centered is-vcentered is-multiline">
     {{ range .Params.photopages }}
-    {{ with $.Site.GetPage "page" "photos" . }}
+    {{ with $.Site.GetPage . }}
     <div class="column is-one-quarter has-text-centered">
       <a href="{{ .RelPermalink }}">
         <figure itemscope representativeOfPage="true" itemtype="http://schema.org/ImageObject">

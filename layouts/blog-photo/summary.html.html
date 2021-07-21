@@ -9,7 +9,7 @@
     {{ partial "blog-tagline" . }}
   </p>
 </header>
-{{ with .Site.GetPage "page" "photos" .Params.photopage }}
+{{ with .Site.GetPage .Params.photopage }}
 <section class="level">
   <div class="level-item">
     <a href="{{ .RelPermalink }}">
