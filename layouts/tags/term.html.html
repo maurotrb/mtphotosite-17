@@ -1,0 +1,25 @@
+{{ define "main" }}
+{{ $baseURL := .Site.BaseURL }}
+<div class="container">
+  <div class="columns">
+    <div class="column is-four-fifths">
+      <main class="section">
+        <header>
+          <h1 class="title is-1">{{ .Data.Singular | humanize }}: {{ .Title }} ({{ len .Data.Pages }})</h1>
+        </header>
+        {{ range .Pages }}
+        <article class="section">
+          {{ .Render "summary"}}
+        </article>
+        {{ end }}
+      </main>
+    </div>
+    <div class="column">
+      <aside id="sidebar">
+        {{ partial "mini-about" . }}
+        {{ partial "blog-explore" . }}
+      </aside>
+    </div>
+  </div>
+</div>
+{{ end }}
