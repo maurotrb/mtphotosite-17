@@ -7,7 +7,7 @@
     <h2 class="subtitle is-3">{{ len .Data.Terms }} phototags listed</h2>
   </header>
   <section class="section">
-    <div class="columns is-centered is-vcentered is-multiline">
+    <div class="columns is-multiline is-vcentered">
       {{ $data := .Data }}
       {{ range $key, $value := .Data.Terms.ByCount }}
       {{ $cover := index $value.Pages.ByDate.Reverse 0 }}

@@ -1,11 +1,13 @@
 <header>
   <h2 class="title is-3"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
   <p class="subtitle is-6">
-    <span class="icon"><i class="fa fa-clock-o"></i></span>
-    <span>{{ .Date.Format "Jan 2, 2006" }}</span>
-    <span class="icon"><i class="fa fa-quote-left"></i></span>
-    <span>Quote</span>
-    {{ partial "blog-tagline" . }}
+    <span class="icon-text">
+      <span class="icon"><i class="fas fa-clock"></i></span>
+      <span>{{ .Date.Format "Jan 2, 2006" }}</span>
+      <span class="icon"><i class="fas fa-quote-left"></i></span>
+      <span>Quote</span>
+      {{ partial "blog-tagline" . }}
+    </span>
   </p>
 </header>
 <section>

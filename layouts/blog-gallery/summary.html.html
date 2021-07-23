@@ -2,21 +2,23 @@
 <header>
   <h2 class="title is-3"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
   <p class="subtitle is-6">
-    <span class="icon"><i class="fa fa-clock-o"></i></span>
-    <span>{{ .Date.Format "Jan 2, 2006" }}</span>
-    <span class="icon"><i class="fa fa-th"></i></span>
-    <span>Gallery of {{ len .Params.photopages }} photos</span>
-    {{ partial "blog-tagline" . }}
+    <span class="icon-text">
+      <span class="icon"><i class="fas fa-clock"></i></span>
+      <span>{{ .Date.Format "Jan 2, 2006" }}</span>
+      <span class="icon"><i class="fas fa-th-large"></i></span>
+      <span>Blog gallery of {{ len .Params.photopages }} photos</span>
+      {{ partial "blog-tagline" . }}
+    </span>
   </p>
 </header>
-<section class="section" itemscope itemtype="http://schema.org/ImageGallery">
-  <div class="columns is-variable is-1 is-centered is-vcentered is-multiline">
+<section class="section p-2" itemscope itemtype="http://schema.org/ImageGallery">
+  <div class="columns is-multiline is-vcentered">
     {{ range .Params.photopages }}
     {{ with $.Site.GetPage . }}
-    <div class="column is-one-quarter has-text-centered">
+    <div class="column is-one-third has-text-centered">
       <a href="{{ .RelPermalink }}">
         <figure itemscope representativeOfPage="true" itemtype="http://schema.org/ImageObject">
-          <img src="{{ $photosBaseURL }}{{ .Params.image_s }}.jpg" alt="{{ .Title }}" width="{{ .Params.image_width_s }}" height="{{ .Params.image_height_s }}">
+          <img class="has-frame-gallery" src="{{ $photosBaseURL }}{{ .Params.image_s }}.jpg" alt="{{ .Title }}" width="{{ .Params.image_width_s }}" height="{{ .Params.image_height_s }}">
           <figcaption itemprop="caption description" style="display: none;">{{ .Description }}</figcaption>
         </figure>
       </a>
@@ -26,7 +28,7 @@
   </div>
 </section>
 <section>
-  <div class="content">
+  <div class="content pt-5">
     {{ .Summary }}
     {{ if .Truncated }}
     <a href="{{ .RelPermalink }}">Read more...</a>

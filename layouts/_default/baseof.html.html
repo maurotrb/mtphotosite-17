@@ -10,6 +10,7 @@
 
       gtag('config', 'UA-77904781-1', { 'anonymize_ip': true });
     </script>
+    <script defer src="https://use.fontawesome.com/releases/v5.15.3/js/all.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -17,7 +18,6 @@
     {{ with .Site.Params.description }}<meta name="description" content="{{ . }}">{{ end }}
     {{ with .Site.Params.author }}<meta name="author" content="{{ . }}">{{ end }}
     <link rel="stylesheet" href="{{ .Site.BaseURL }}css/mtphotosite.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     {{ with .OutputFormats.Get "rss" -}}
         {{ printf `<link rel="%s" type="%s" href="%s" title="%s" />` .Rel .MediaType.Type .Permalink $.Site.Title | safeHTML }}
     {{ end -}}
@@ -34,11 +34,11 @@
             <span></span>
           </button>
         </div>
-        <div id="navMenu" class="navbar-menu">
-              {{ range .Site.Menus.main }}
-                <a class="navbar-item" href="{{ .URL }}">{{ upper .Name }}</a>
-        {{end}}
-              </div>
+        <div id="navMenu" class="navbar-menu is-family-sans-serif">
+            {{ range .Site.Menus.main }}
+              <a class="navbar-item" href="{{ .URL }}">{{ upper .Name }}</a>
+            {{end}}
+        </div>
       </nav>
     </header>
     {{ block "main" . }}
@@ -46,19 +46,15 @@
     </main>
     {{ end }}
     <footer class="footer">
-      <div class="content has-text-centered">
-        <p>
-          Photographs are best viewed if you can see all 21 steps in the step-wedge.
-        </p>
+      <div class="content has-text-centered is-family-sans-serif">
+        <p>Photographs are best viewed if you can see all 21 steps in the step-wedge.</p>
         <figure>
           <img id="step-wedge" src="/img/uniform-step-wedge.png" width="735" height="75">
         </figure>
-        <p>
-          <span class="icon"><i class="fa fa-copyright"></i></span> {{ now.Year }} {{ .Site.Params.author }}. Powered by <a href="http://gohugo.io">Hugo</a> and <a href="http://bulma.io">Bulma</a>.
-        </p>
-        <p>
-          <a class="icon" href="http://www.instagram.com/maurotrbphoto/"><i class="fa fa-instagram"></i></a>
-          <a class="icon" href="http://www.flickr.com/photos/maurot/"><i class="fa fa-flickr"></i></a>
+        <p class="icont-text">
+          <span class="icon"><i class="fas fa-copyright"></i></span>
+          <span>{{ now.Year }} {{ .Site.Params.author }}. Powered by <a href="http://gohugo.io">Hugo</a> and <a href="http://bulma.io">Bulma</a>.</span>
+          <a class="icon" href="http://www.flickr.com/photos/maurot/"><i class="fab fa-flickr"></i></a>
         </p>
         <p>
           <a href="//www.iubenda.com/privacy-policy/8274566" class="iubenda-white iubenda-embed" title="Privacy Policy">Privacy Policy</a><script type="text/javascript">(function (w,d) {var loader = function () {var s = d.createElement("script"), tag = d.getElementsByTagName("script")[0]; s.src = "//cdn.iubenda.com/iubenda.js"; tag.parentNode.insertBefore(s,tag);}; if(w.addEventListener){w.addEventListener("load", loader, false);}else if(w.attachEvent){w.attachEvent("onload", loader);}else{w.onload = loader;}})(window, document);</script>

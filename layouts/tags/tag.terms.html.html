@@ -9,7 +9,7 @@
           <h2 class="subtitle is-3">{{ len .Data.Terms }} tags listed</h2>
         </header>
         <section class="section">
-          <div class="columns is-centered is-vcentered is-multiline">
+          <div class="columns is-multiline is-vcentered">
             {{ $data := .Data }}
             {{ range $key, $value := .Data.Terms.Alphabetical }}
             <span class="tag is-large"><a href="/tags/{{ $value.Name | urlize }}">{{ $value.Name }} ({{ $value.Count }})</a></span>

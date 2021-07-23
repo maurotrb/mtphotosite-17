@@ -2,11 +2,13 @@
 <header>
   <h2 class="title is-3"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
   <p class="subtitle is-6">
-    <span class="icon"><i class="fa fa-clock-o"></i></span>
-    <span>{{ .Date.Format "Jan 2, 2006" }}</span>
-    <span class="icon"><i class="fa fa-image"></i></span>
-    <span>Photo</span>
-    {{ partial "blog-tagline" . }}
+    <span class="icon-text">
+      <span class="icon"><i class="fas fa-clock"></i></span>
+      <span>{{ .Date.Format "Jan 2, 2006" }}</span>
+      <span class="icon"><i class="fas fa-image"></i></span>
+      <span>Photo</span>
+      {{ partial "blog-tagline" . }}
+    </span>
   </p>
 </header>
 {{ with .Site.GetPage .Params.photopage }}
@@ -14,7 +16,7 @@
   <div class="level-item">
     <a href="{{ .RelPermalink }}">
       <figure itemscope representativeOfPage="true" itemtype="http://schema.org/ImageObject">
-        <img src="{{ $photosBaseURL }}{{ .Params.image_xl }}.jpg" alt="{{ .Title }}" width="{{ .Params.image_width_xl }}" height="{{ .Params.image_height_xl }}">
+        <img class="has-frame" src="{{ $photosBaseURL }}{{ .Params.image_xl }}.jpg" alt="{{ .Title }}" width="{{ .Params.image_width_xl }}" height="{{ .Params.image_height_xl }}">
         <figcaption itemprop="caption description" style="display: none;">{{ .Description }}</figcaption>
       </figure>
     </a>
@@ -22,7 +24,7 @@
 </section>
 {{ end }}
 <section>
-  <div class="content">
+  <div class="content pt-5">
     {{ .Summary }}
     {{ if .Truncated }}
     <a href="{{ .RelPermalink }}">Read more...</a>

@@ -1,10 +1,9 @@
 <div class="column is-one-quarter has-text-centered">
   <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
     <a itemprop="contentUrl" href="{{ .content.Permalink }}">
-      <img src="{{ .photosBaseURL }}{{ .content.Params.image_s }}.jpg" itemprop="thumbnail" alt="{{ .content.Title }}" width="{{ .content.Params.image_width_s }}" height="{{ .content.Params.image_height_s }}">
+      <img class="has-frame-gallery" src="{{ .photosBaseURL }}{{ .content.Params.image_s }}.jpg" itemprop="thumbnail" alt="{{ .content.Title }}" width="{{ .content.Params.image_width_s }}" height="{{ .content.Params.image_height_s }}">
     </a>
     <figcaption itemprop="caption description" style="display: none;">{{ .content.Description }}</figcaption>
   </figure>
-  <span class="icon"><i class="fa fa-image"></i></span>
-  <span class="content">{{ .content.Title }}</span>
+  <span class="title is-6">{{ .content.Title }}</span>
 </div>

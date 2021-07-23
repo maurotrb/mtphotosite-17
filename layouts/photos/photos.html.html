@@ -17,7 +17,7 @@
     <h4 class="subtitle is-4">{{ len .Pages }} photos</h4>
   </header>
   <section class="section" itemscope itemtype="http://schema.org/ImageGallery">
-    <div class="columns is-centered is-vcentered is-multiline">
+    <div class="columns is-multiline is-vcentered">
       {{ range .Pages.ByDate.Reverse }}
       {{ partial "photo-thumb.html" (dict "content" . "photosBaseURL" $photosBaseURL) }}
       {{ end }}

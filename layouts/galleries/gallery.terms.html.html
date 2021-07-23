@@ -7,7 +7,7 @@
     <h2 class="subtitle is-3">{{ len .Data.Terms }} galleries listed</h2>
   </header>
   <section class="section">
-    <div class="columns is-centered is-vcentered is-multiline">
+    <div class="columns is-multiline is-vcentered">
       {{ $data := .Data }}
       {{ range $key, $value := .Data.Terms.Alphabetical }}
       {{ $cover := index $value.Pages.ByDate.Reverse 0 }}

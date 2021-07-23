@@ -10,15 +10,15 @@
       </figure>
       <header>
         <h1 class="title is-4 is-spaced">{{ .Title }}</h1>
-        <h2 class="subtitle is-6">{{ .Params.description }}</h2>
+        <h2 class="is-size-6">{{ .Params.description }}</h2>
       </header>
     </div>
   </section>
   <section class="section">
-    <div class="container">
+    <div class="container is-family-sans-serif">
       <div class="media">
         <div class="media-left">
-          <span class="icon"><i class="fa fa-clock-o"></i></span>
+          <span class="icon"><i class="fas fa-clock"></i></span>
         </div>
         <div class="media-content">
           {{ .Date.Format "2006-01-02 15:04:05" }}
@@ -27,31 +27,35 @@
       {{ if (and (isset .Params "gps_latitude") (ne .Params.gps_latitude "")) }}
       <div class="media">
         <div class="media-left">
-          <span class="icon"><i class="fa fa-map-marker"></i></span>
+          <span class="icon"><i class="fas fa-map-marked-alt"></i></span>
         </div>
         <div class="media-content">
-          <small><a href="http://www.google.com/maps/place/{{ .Params.gps_latitude }},{{ .Params.gps_longitude }}">Latitude {{ .Params.gps_latitude }}, Longitude {{ .Params.gps_longitude }}</a></small>
+          <a href="http://www.google.com/maps/place/{{ .Params.gps_latitude }},{{ .Params.gps_longitude }}">Latitude {{ .Params.gps_latitude }}, Longitude {{ .Params.gps_longitude }}</a>
         </div>
       </div>
       {{ end }}
       <div class="media">
         <div class="media-left">
-          <span class="icon"><i class="fa fa-th"></i></span>
+          <span class="icon"><i class="fas fa-th-large"></i></span>
         </div>
         <div class="media-content">
-          {{ range .Params.galleries }}
-          <span class="tag"><a href="{{ $baseURL }}galleries/{{ . | urlize }}">{{ . }}</a></span>
-          {{ end }}
+          <div class="tags">
+            {{ range .Params.galleries }}
+            <span class="tag"><a href="{{ $baseURL }}galleries/{{ . | urlize }}">{{ . }}</a></span>
+            {{ end }}
+          </div>
         </div>
       </div>
       <div class="media">
         <div class="media-left">
-          <span class="icon"><i class="fa fa-tags"></i></span>
+          <span class="icon"><i class="fas fa-tags"></i></span>
         </div>
         <div class="media-content">
-          {{ range .Params.phototags }}
-          <span class="tag"><a href="{{ $baseURL }}phototags/{{ . | urlize }}">{{ . }}</a></span>
-          {{ end }}
+          <div class="tags">
+            {{ range .Params.phototags }}
+            <span class="tag"><a href="{{ $baseURL }}phototags/{{ . | urlize }}">{{ . }}</a></span>
+            {{ end }}
+          </div>
         </div>
       </div>
     </div>

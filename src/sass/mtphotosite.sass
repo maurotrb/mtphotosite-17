@@ -1,14 +1,16 @@
+@charset "utf-8"
+
 ///////////////
 // Google Fonts
 ///////////////
-@import url('https://fonts.googleapis.com/css?family=Kaushan+Script')
-@import url('https://fonts.googleapis.com/css?family=Oswald:400,700')
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap')
+@import url('https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@400;700&display=swap')
+@import url('https://fonts.googleapis.com/css2?family=Nothing+You+Could+Do&display=swap')
 
 ///////////////////////
 // Bulma initial import
 ///////////////////////
 @import "bulma/sass/utilities/initial-variables"
-@import "bulma/sass/utilities/functions"
 
 ///////////////////
 // My Bulma configs
@@ -31,18 +33,16 @@ $text-light: $white-ter
 $text-strong: $grey-light
 
 // Fonts
-$family-logo: "Kaushan Script"
-$family-sans-serif: "Oswald", sans-serif
-
-// Section paddings
-$section-padding: 1.5rem 1rem 1rem
-
-// Column gap
-$column-gap: 2rem
+$family-logo: "Nothing You Could Do"
+$family-sans-serif: "Merriweather Sans", sans-serif
+$family-primary: "Merriweather", serif
+$title-family: $family-sans-serif
+$subtitle-family: $family-sans-serif
 
 // Import the rest of Bulma
 @import "bulma/sass/utilities/_all"
 @import "bulma/sass/base/_all"
+@import "bulma/sass/helpers/_all"
 @import "bulma/sass/elements/content"
 @import "bulma/sass/elements/container"
 @import "bulma/sass/elements/icon"
@@ -72,6 +72,10 @@ figure
     &.has-frame
       outline: 1.125rem solid hsl(0, 0%, 98%)
       margin: 2rem
+  img
+    &.has-frame-gallery
+      outline: .4rem solid hsl(0, 0%, 98%)
+      margin: .8rem
 
 // Step wedge frame
 figure

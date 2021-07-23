@@ -1,15 +1,17 @@
 <header>
   <h2 class="title is-3"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
   <p class="subtitle is-6">
-    <span class="icon"><i class="fa fa-clock-o"></i></span>
-    <span>{{ .Date.Format "Jan 2, 2006" }}</span>
-    <span class="icon"><i class="fa fa-newspaper-o"></i></span>
-    <span>Article of {{ .FuzzyWordCount }} words</span>
-    {{ partial "blog-tagline" . }}
+    <span class="icon-text">
+      <span class="icon"><i class="fas fa-clock"></i></span>
+      <span>{{ .Date.Format "Jan 2, 2006" }}</span>
+      <span class="icon"><i class="fas fa-newspaper"></i></span>
+      <span>Article of {{ .FuzzyWordCount }} words</span>
+      {{ partial "blog-tagline" . }}
+    </span>
   </p>
 </header>
 <section>
-  <div class="content">
+  <div class="content pt-5">
     {{ .Summary }}
     {{ if .Truncated }}
     <a href="{{ .RelPermalink }}">Read more...</a>

@@ -6,16 +6,18 @@
       <main>
         <header class="section">
           <h1 class="title is-1">{{ .Title }}</h1>
-          <p class="subtitle is-5">
-            <span class="icon"><i class="fa fa-clock-o"></i></span>
-            <span>{{ .Date.Format "Jan 2, 2006" }}</span>
-            <span class="icon"><i class="fa fa-quote-left"></i></span>
-            <span>Quote</span>
-            {{ partial "blog-tagline" . }}
+          <p class="subtitle is-6">
+            <span class="icon-text">
+              <span class="icon"><i class="fas fa-clock"></i></span>
+              <span>{{ .Date.Format "Jan 2, 2006" }}</span>
+              <span class="icon"><i class="fas fa-quote-left"></i></span>
+              <span>Quote</span>
+              {{ partial "blog-tagline" . }}
+            </span>
           </p>
         </header>
         <article class="section">
-          <div class="content is-large">
+          <div class="content is-medium">
             <blockquote>
               <p>{{ .Content }}</p>
               <footer>
