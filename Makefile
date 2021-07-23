@@ -22,7 +22,7 @@ all: site
 
 $(css-target): $(css-prereq)
 	@echo -e "Creating minified css file...\t\t\c"
-	@$(css-proc) -s compressed $(css-prereq):$(css-target)
+	@$(css-proc) -s compressed $(css-prereq):$(css-target) --no-source-map 
 	@echo -e "[ Done ]"
 
 site: $(css-target)
