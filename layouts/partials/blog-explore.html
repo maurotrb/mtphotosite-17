@@ -1,8 +1,11 @@
-<section class="section is-family-sans-serif" id="tags">
-  <h1 class="title is-4">Explore the blog</h1>
-  <div class="tags are-medium">
+<section class="section is-family-sans-serif pt-0" id="tags">
+  <div class="icon-text">
+    <span class="icon"><i class="fas fa-tags"></i></span>
+    <span>Explore the blog</span>
+  </div>
+  <div class="tags are-medium pt-2">
     {{ range $key, $value := .Site.Taxonomies.tags.ByCount }}
-    <span class="tag is-capitalized"><a href="/tags/{{ $value.Name | urlize }}">{{ $value.Name }} ({{ $value.Count }})</a></span>
+    <span class="tag is-capitalized my-0"><a href="/tags/{{ $value.Name | urlize }}">{{ $value.Name }} ({{ $value.Count }})</a></span>
     {{ end }}
   </div>
 </section>

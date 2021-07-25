@@ -3,7 +3,7 @@
 <div class="container">
   <div class="columns">
     <div class="column is-four-fifths">
-      <main class="section">
+      <main class="section pr-0 pb-5">
         <header>
           <h1 class="title is-1">Blog ({{ len .Data.Pages }})</h1>
         </header>
@@ -15,7 +15,7 @@
       </main>
     </div>
     <div class="column">
-      <aside id="sidebar">
+      <aside class="section pt-0 pl-0" id="sidebar">
         {{ partial "mini-about" . }}
         {{ partial "blog-explore" . }}
       </aside>
