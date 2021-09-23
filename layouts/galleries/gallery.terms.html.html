@@ -9,7 +9,7 @@
   <section class="section">
     <div class="columns is-multiline is-vcentered">
       {{ $data := .Data }}
-      {{ range $key, $value := .Data.Terms.Alphabetical }}
+      {{ range $key, $value := .Data.Terms.Alphabetical.Reverse }}
       {{ $cover := index $value.Pages.ByDate.Reverse 0 }}
       {{ partial "gallery-thumb.html" (dict "content" . "photosBaseURL" $photosBaseURL "cover" $cover) }}
       {{ end }}
