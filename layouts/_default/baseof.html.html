@@ -1,16 +1,7 @@
 <!DOCTYPE html>
 <html class="has-navbar-fixed-top" lang="{{ .Site.LanguageCode | default "en-us" }}">
   <head>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-77904781-1"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'UA-77904781-1', { 'anonymize_ip': true });
-    </script>
-    <script defer src="https://use.fontawesome.com/releases/v5.15.3/js/all.js"></script>
+    <script defer src="{{ .Site.BaseURL }}js/fa5.all.min.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
