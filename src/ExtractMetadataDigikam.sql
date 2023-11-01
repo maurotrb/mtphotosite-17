@@ -26,7 +26,7 @@ PublicTags(tagid, tagname) AS
 ImagePublicTags (imageid, groupedtags) AS
 (
         SELECT IT.imageid,
-               group_concat(PT.tagname,"|")
+               group_concat(PT.tagname,'|')
         FROM   ImageTags IT
             INNER JOIN PublicTags PT ON PT.tagid = IT.tagid
         WHERE    PT.tagname <> ''
@@ -55,7 +55,7 @@ GalleryTags(tagid, tagname) AS
 ImageGalleryTags (imageid, groupedtags) AS
 (
         SELECT  IT.imageid,
-                group_concat(GT.tagname,"|")
+                group_concat(GT.tagname,'|')
         FROM    ImageTags IT
         INNER JOIN GalleryTags GT ON GT.tagid = IT.tagid
         GROUP BY   IT.imageid),

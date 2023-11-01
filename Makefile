@@ -16,7 +16,7 @@ metadata-clean  = ./src/CleanJPGMetadata.sh
 photo-pages-dir = ./content/photos
 photo-pages-csv = ./src/PhotoPagesFromCSV.hs
 s3-bucket       = www.maurotaraborelliphoto.com
-site-proc       = hugo -v
+site-proc       = hugo --logLevel info
 
 all: site
 
