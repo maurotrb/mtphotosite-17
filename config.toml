@@ -7,8 +7,11 @@ blog = "/:section/:year/:month/:title/"
 
 [params]
 description = "Mauro Taraborelli's Photography Portfolio and Blog"
-author = "Mauro Taraborelli"
 photosBaseURL = "https://media.maurotaraborelliphoto.com/photos/"
+
+[params.author]
+name = "Mauro Taraborelli"
+email = "mauro@maurotaraborelliphoto.com"
 
 [taxonomies]
 tag = "tags"
