@@ -1,24 +1,21 @@
 <!DOCTYPE html>
-<html class="has-navbar-fixed-top" lang="{{ .Site.LanguageCode | default "en-us" }}">
+<html class="has-navbar-fixed-top" lang="{{ .Site.LanguageCode }}">
   <head>
-    <script defer src="{{ .Site.BaseURL }}js/fa5.all.min.js"></script>
+    <script defer src="{{ absURL "" }}js/fa5.all.min.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>{{ .Title }}</title>
     {{ with .Site.Params.description }}<meta name="description" content="{{ . }}">{{ end }}
     {{ with site.Params.author.name }}<meta name="author" content="{{ . }}">{{ end }}
-    <link rel="stylesheet" href="{{ .Site.BaseURL }}css/mtphotosite.min.css">
-    {{ with .OutputFormats.Get "rss" -}}
-        {{ printf `<link rel="%s" type="%s" href="%s" title="%s" />` .Rel .MediaType.Type .Permalink $.Site.Title | safeHTML }}
-    {{ end -}}
+    <link rel="stylesheet" href="{{ absURL "" }}css/mtphotosite.min.css">
     {{ hugo.Generator }}
   </head>
   <body>
     <header>
       <nav class="navbar is-fixed-top">
         <div class="navbar-brand">
-          <a class="navbar-item" id="logo" href="{{ .Site.BaseURL }}">{{ .Site.Title }}</a>
+          <a class="navbar-item" id="logo" href="{{ absURL "" }}">{{ .Site.Title }}</a>
           <button class="button navbar-burger" data-target="navMenu">
             <span></span>
             <span></span>
@@ -44,8 +41,7 @@
         </figure>
         <p class="icont-text">
           <span class="icon"><i class="fas fa-copyright"></i></span>
-          <span>{{ now.Year }} {{ .Site.Params.author }}. Powered by <a href="http://gohugo.io">Hugo</a> and <a href="http://bulma.io">Bulma</a>.</span>
-          <a class="icon" href="http://www.flickr.com/photos/maurot/"><i class="fab fa-flickr"></i></a>
+          <span>{{ now.Year }} {{ .Site.Params.author.name }}. Powered by <a href="http://gohugo.io">Hugo</a> and <a href="http://bulma.io">Bulma</a>.</span>
         </p>
         <p>
           <a href="//www.iubenda.com/privacy-policy/8274566" class="iubenda-white iubenda-embed" title="Privacy Policy">Privacy Policy</a><script type="text/javascript">(function (w,d) {var loader = function () {var s = d.createElement("script"), tag = d.getElementsByTagName("script")[0]; s.src = "//cdn.iubenda.com/iubenda.js"; tag.parentNode.insertBefore(s,tag);}; if(w.addEventListener){w.addEventListener("load", loader, false);}else if(w.attachEvent){w.attachEvent("onload", loader);}else{w.onload = loader;}})(window, document);</script>

@@ -1,11 +1,9 @@
 {{ define "main" }}
-{{ $baseURL := .Site.BaseURL }}
-{{ $photosBaseURL := .Site.Params.photosBaseURL }}
 <main>
   <section class="hero">
     <div class="hero-body container has-text-centered">
       <figure itemscope representativeOfPage="true" itemtype="http://schema.org/ImageObject">
-        <img class="has-frame" src="{{ $photosBaseURL }}{{ .Params.image_xl }}.jpg" alt="{{ .Title }}" width="{{ .Params.image_width_xl }}" height="{{ .Params.image_height_xl }}">
+        <img class="has-frame" src="{{ .Site.Params.photosBaseURL }}{{ .Params.image_xl }}.jpg" alt="{{ .Title }}" width="{{ .Params.image_width_xl }}" height="{{ .Params.image_height_xl }}">
         <figcaption itemprop="caption description" style="display: none;">{{ .Description }}</figcaption>
       </figure>
       <header>
@@ -41,7 +39,7 @@
         <div class="media-content">
           <div class="tags">
             {{ range .Params.galleries }}
-            <span class="tag"><a href="{{ $baseURL }}galleries/{{ . | urlize }}">{{ . }}</a></span>
+            <span class="tag"><a href="{{ absURL "" }}galleries/{{ . | urlize }}">{{ . }}</a></span>
             {{ end }}
           </div>
         </div>
@@ -53,7 +51,7 @@
         <div class="media-content">
           <div class="tags">
             {{ range .Params.phototags }}
-            <span class="tag"><a href="{{ $baseURL }}phototags/{{ . | urlize }}">{{ . }}</a></span>
+            <span class="tag"><a href="{{ absURL "" }}phototags/{{ . | urlize }}">{{ . }}</a></span>
             {{ end }}
           </div>
         </div>
@@ -63,7 +61,7 @@
           <span class="icon"><i class="fas fa-envelope"></i></span>
         </div>
         <div class="media-content">
-          <span><a href="mailto:mauro@maurotaraborelli.com?subject=Request%20for%20info%20about%20your%20image%20{{ .Params.image }}">Contact me about this image (ID {{ .Params.image }})</a></span>
+          <span><a href="mailto:{{ .Site.Params.author.email }}?subject=Request%20for%20info%20about%20your%20image%20{{ .Params.image }}">Contact me about this image (ID {{ .Params.image }})</a></span>
         </div>
       </div>
     </div>

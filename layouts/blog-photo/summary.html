@@ -1,4 +1,3 @@
-{{ $photosBaseURL := .Site.Params.photosBaseURL }}
 <header>
   <h2 class="title is-3"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
   <p class="subtitle is-6">
@@ -16,7 +15,7 @@
   <div class="level-item">
     <a href="{{ .RelPermalink }}">
       <figure itemscope representativeOfPage="true" itemtype="http://schema.org/ImageObject">
-        <img class="has-frame" src="{{ $photosBaseURL }}{{ .Params.image_xl }}.jpg" alt="{{ .Title }}" width="{{ .Params.image_width_xl }}" height="{{ .Params.image_height_xl }}">
+        <img class="has-frame" src="{{ .Site.Params.photosBaseURL }}{{ .Params.image_xl }}.jpg" alt="{{ .Title }}" width="{{ .Params.image_width_xl }}" height="{{ .Params.image_height_xl }}">
         <figcaption itemprop="caption description" style="display: none;">{{ .Description }}</figcaption>
       </figure>
     </a>

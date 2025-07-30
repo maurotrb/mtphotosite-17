@@ -1,7 +1,6 @@
-{{ $baseURL := .Site.BaseURL }}
 <span class="icon"><i class="fas fa-tags"></i></span>
 <span class="tags are-medium">
 {{ range .Params.tags }}
-<span class="tag"><a href="{{ $baseURL }}tags/{{ . | urlize }}">{{ . }}</a></span>
+<span class="tag"><a href="{{ absURL "" }}tags/{{ . | urlize }}">{{ . }}</a></span>
 {{ end }}
 </span>

@@ -1,0 +1,14 @@
+{{ define "main" }}
+<main class="section">
+  <div class="container">
+    <header class="section">
+      <h1 class="title is-1">{{ .Title }}</h1>
+    </header>
+    <section class="section">
+      <div class="content is-large">
+        I'm sorry, but the page doesn't exist. You can go back to the <a href="{{ absURL "" }}">home page</a>, browse the <a href="{{ absURL "" }}galleries/">galleries</a>, the <a href="{{ absURL "" }}phototags/">photo tags</a>, or the entire <a href="{{ absURL "" }}photos/">content</a>.
+      </div>
+    </section>
+  </div>
+</main>
+{{ end }}

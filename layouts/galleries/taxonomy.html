@@ -1,15 +1,14 @@
 {{ define "main" }}
-{{ $baseURL := .Site.BaseURL }}
 {{ $photosBaseURL := .Site.Params.photosBaseURL }}
 <main>
   <header class="section">
     <h1 class="title is-1">{{ .Title }}</h1>
-    <h2 class="subtitle is-3">{{ len .Data.Terms }} phototags listed</h2>
+    <h2 class="subtitle is-3">{{ len .Data.Terms }} galleries listed</h2>
   </header>
   <section class="section">
     <div class="columns is-multiline is-vcentered">
       {{ $data := .Data }}
-      {{ range $key, $value := .Data.Terms.ByCount }}
+      {{ range $key, $value := .Data.Terms.Alphabetical.Reverse }}
       {{ $cover := index $value.Pages.ByDate.Reverse 0 }}
       {{ partial "gallery-thumb.html" (dict "content" . "photosBaseURL" $photosBaseURL "cover" $cover) }}
       {{ end }}
