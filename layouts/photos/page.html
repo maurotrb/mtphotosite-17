@@ -7,8 +7,8 @@
         <figcaption itemprop="caption description" style="display: none;">{{ .Description }}</figcaption>
       </figure>
       <header>
-        <h1 class="title is-4 is-spaced">{{ .Title }}</h1>
-        <h2 class="is-size-6">{{ .Params.description }}</h2>
+        <h1 class="title is-4 is-space">{{ .Title }}</h1>
+        <h3 class="is-size-6">{{ .Params.description }}</h3>
       </header>
     </div>
   </section>
@@ -19,19 +19,9 @@
           <span class="icon"><i class="fas fa-clock"></i></span>
         </div>
         <div class="media-content">
-          {{ .Date.Format "2006-01-02 15:04:05" }}
+          {{ .Date.Format "02 Jan 2006" }}
         </div>
       </div>
-      {{ if (and (isset .Params "gps_latitude") (ne .Params.gps_latitude "")) }}
-      <div class="media">
-        <div class="media-left">
-          <span class="icon"><i class="fas fa-map-marked-alt"></i></span>
-        </div>
-        <div class="media-content">
-          <a href="http://www.google.com/maps/place/{{ .Params.gps_latitude }},{{ .Params.gps_longitude }}">Latitude {{ .Params.gps_latitude }}, Longitude {{ .Params.gps_longitude }}</a>
-        </div>
-      </div>
-      {{ end }}
       <div class="media">
         <div class="media-left">
           <span class="icon"><i class="fas fa-th-large"></i></span>
@@ -56,6 +46,16 @@
           </div>
         </div>
       </div>
+      {{ if (and (isset .Params "gps_latitude") (ne .Params.gps_latitude "")) }}
+      <div class="media">
+        <div class="media-left">
+          <span class="icon"><i class="fas fa-map-marked-alt"></i></span>
+        </div>
+        <div class="media-content">
+          <a href="http://www.google.com/maps/place/{{ .Params.gps_latitude }},{{ .Params.gps_longitude }}">Lat. {{ .Params.gps_latitude }}, Long. {{ .Params.gps_longitude }}</a>
+        </div>
+      </div>
+      {{ end }}
       <div class="media">
         <div class="media-left">
           <span class="icon"><i class="fas fa-envelope"></i></span>

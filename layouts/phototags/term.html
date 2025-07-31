@@ -1,8 +1,7 @@
 {{ define "main" }}
 <main>
   <header class="section">
-    <h1 class="title is-1">{{ .Title }}</h1>
-    <h2 class="subtitle is-3">Phototag with {{ len .Data.Pages }} photos</h2>
+    <h1 class="title is-1">{{ .Title }} ({{ len .Data.Pages }} photos)</h1>
   </header>
   <section class="section" itemscope itemtype="http://schema.org/ImageGallery">
     <div class="columns is-centered is-vcentered is-multiline">

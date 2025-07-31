@@ -2,8 +2,7 @@
 {{ $photosBaseURL := .Site.Params.photosBaseURL }}
 <main>
   <header class="section">
-    <h1 class="title is-1">{{ .Title }}</h1>
-    <h2 class="subtitle is-3">{{ len .Data.Terms }} phototags listed</h2>
+    <h1 class="title is-1">{{ len .Data.Terms }} {{ .Title }}</h1>
   </header>
   <section class="section">
     <div class="columns is-multiline is-vcentered">
