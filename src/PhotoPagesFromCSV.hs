@@ -17,7 +17,7 @@ import           GHC.Generics
 import qualified Data.ByteString.Lazy as BL
 import           Data.Csv as CSV
 import qualified Data.Map.Strict as Map
-import           Data.List (nub, sort)
+import           Data.List (nub, sort, delete)
 import qualified Data.Text as T
 import qualified Data.Text.IO as TIO
 import qualified Data.Vector as V
@@ -139,7 +139,7 @@ mergeToIpsmMap = Map.intersectionWithKey wmatch
 mergeToFmMap :: IdmMap -> IpsmMap -> FmMap
 mergeToFmMap = Map.intersectionWithKey wmatch
   where
-    wmatch  i (IDM im ct glat glon t cap tags gals) (IPSM is iws ihs ixl iwxl ihxl) = FM t cap ct im is iws ihs ixl iwxl ihxl glat glon ((sort . nub) $ T.splitOn "|" gals) ((sort . nub) $ T.splitOn "|" tags)
+    wmatch  i (IDM im ct glat glon t cap tags gals) (IPSM is iws ihs ixl iwxl ihxl) = FM t cap ct im is iws ihs ixl iwxl ihxl glat glon ((sort . delete "" . nub) $ T.splitOn "|" gals) ((sort . nub) $ T.splitOn "|" tags)
 
 toFM :: V.Vector ImageDigikamMetadata -> V.Vector ImagePixelSize -> V.Vector FrontMatter
 toFM idmd ips = Map.foldl' V.snoc V.empty

@@ -9,8 +9,10 @@ PublicTags(tagid, tagname) AS
         END
     FROM   Tags TP
     WHERE  TP.pid = 0 -- Root tags
-    AND    TP.NAME <> '_Digikam_Internal_Tags_'
-    AND    TP.NAME <> 'GALLERIES'
+    AND    (TP.NAME = 'WHAT?'
+	OR    TP.NAME = 'WHEN?'
+	OR    TP.NAME = 'WHERE?'
+    OR    TP.NAME = 'WHY?')
     UNION ALL
     SELECT  T.id,
             CASE

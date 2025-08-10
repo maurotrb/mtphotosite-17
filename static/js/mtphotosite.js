@@ -2,6 +2,7 @@
 
 document.addEventListener('DOMContentLoaded', function () {
 
+  //// NAVBAR BURGER ////
   // Get all "navbar-burger" elements
   var $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
 
@@ -21,6 +22,22 @@ document.addEventListener('DOMContentLoaded', function () {
         $target.classList.toggle('is-active');
 
       });
+    });
+  }
+
+  //// PHOTO INFO BUTTON ////
+  const button = document.getElementById("toggle-info");
+  const info = document.getElementById("photo-info");
+
+  if (button && info) {
+    button.addEventListener("click", () => {
+      info.classList.toggle("is-hidden");
+      const span = button.querySelector("span:last-child");
+      if (info.classList.contains("is-hidden")) {
+        span.textContent = "show photo info";
+      } else {
+        span.textContent = "hide photo info";
+      }
     });
   }
 

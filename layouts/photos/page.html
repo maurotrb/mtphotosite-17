@@ -7,13 +7,25 @@
         <figcaption itemprop="caption description" style="display: none;">{{ .Description }}</figcaption>
       </figure>
       <header>
-        <h1 class="title is-4 is-space">{{ .Title }}</h1>
-        <h3 class="is-size-6">{{ .Params.description }}</h3>
+        <h1 class="title is-4">{{ .Title }}</h1>
+        <button class="button is-ghost" id="toggle-info">
+          <span>show photo info</span>
+        </button>
       </header>
     </div>
   </section>
-  <section class="section">
+  <section class="section is-hidden" id="photo-info">
     <div class="container is-family-sans-serif">
+      {{ if (ne .Params.description "") }}
+      <div class="media">
+        <div class="media-left">
+          <span class="icon"><i class="fas fa-align-justify"></i></span>
+        </div>
+        <div class="media-content">
+          {{ .Params.description }}
+        </div>
+      </div>
+      {{ end }}
       <div class="media">
         <div class="media-left">
           <span class="icon"><i class="fas fa-clock"></i></span>
@@ -27,7 +39,7 @@
           <span class="icon"><i class="fas fa-th-large"></i></span>
         </div>
         <div class="media-content">
-          <div class="tags">
+          <div class="tags are-medium">
             {{ range .Params.galleries }}
             <span class="tag"><a href="{{ absURL "" }}galleries/{{ . | urlize }}">{{ . }}</a></span>
             {{ end }}
@@ -39,7 +51,7 @@
           <span class="icon"><i class="fas fa-tags"></i></span>
         </div>
         <div class="media-content">
-          <div class="tags">
+          <div class="tags are-medium">
             {{ range .Params.phototags }}
             <span class="tag"><a href="{{ absURL "" }}phototags/{{ . | urlize }}">{{ . }}</a></span>
             {{ end }}
