@@ -1,0 +1,10 @@
+{{- $photos := .Site.Taxonomies.phototags.tenset -}}
+[
+{{- range $index, $photo := $photos -}}
+  {{- if gt $index 0 }},{{ end -}}
+  {
+    "title": {{ lower $photo.Title | jsonify }},
+    "url": {{ $photo.Permalink | jsonify }}
+  }
+{{- end -}}
+]

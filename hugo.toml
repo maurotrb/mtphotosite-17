@@ -19,6 +19,13 @@ email = 'mauro@maurotaraborelliphoto.com'
   gallery = 'galleries'
   phototag = 'phototags'
 
+[outputs]
+  home = ['html', 'json']
+  page = ['html']
+  section = ['html']
+  taxonomy = ['html']
+  term = ['html', 'json']
+
 [menus]
   [[menu.main]]
     name = 'home'

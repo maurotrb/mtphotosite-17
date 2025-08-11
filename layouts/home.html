@@ -1,13 +1,15 @@
 {{ define "main" }}
 {{ $photosBaseURL := .Site.Params.photosBaseURL }}
+{{ $contextType := "home" }}
+{{ $contextName := "tenset" }}
 <main class="section">
-  <section class="content is-large">
+  <section class="content is-medium">
     {{ .Content }}
   </section>
   <section itemscope itemtype="http://schema.org/ImageGallery">
     <div class="columns is-multiline is-vcentered">
       {{ range .Site.Taxonomies.phototags.tenset }}
-      {{ partial "photo-thumb.html" (dict "content" . "photosBaseURL" $photosBaseURL) }}
+      {{ partial "photo-thumb.html" (dict "content" . "photosBaseURL" $photosBaseURL "contextType" $contextType "contextName" $contextName) }}
       {{ end }}
     </div>
   </section>

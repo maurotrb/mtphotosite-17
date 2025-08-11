@@ -1,7 +1,7 @@
 <div class="column is-one-quarter has-text-centered">
   <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
     <a itemprop="contentUrl" href="{{ .content.Page.Permalink }}">
-      <img class="has-frame-gallery" src="{{ .photosBaseURL }}{{ .cover.Params.image_s }}.jpg" itemprop="thumbnail" alt="{{ .content.Page.Title }}" width="{{ .cover.Params.image_width_s }}" height="{{ .cover.Params.image_height_s }}">
+      <img class="has-frame-gallery" src="{{ .photosBaseURL }}{{ .cover.Params.image_s }}.jpg" itemprop="thumbnail" alt="{{ .content.Page.Title }}" width="{{ .cover.Params.image_width_s }}" height="{{ .cover.Params.image_height_s }}" loading="lazy">
     </a>
     <figcaption itemprop="caption description" style="display: none;">{{ .content.Page.Title }}</figcaption>
   </figure>

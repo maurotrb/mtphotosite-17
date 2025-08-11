@@ -2,8 +2,13 @@
 <main>
   <section class="hero">
     <div class="hero-body container has-text-centered">
+      <div class="nav-links">
+        <a id="prev-link" class="button is-ghost"><span class="icon"><i class="fas fa-caret-left"></i></span><span>prev</span></a>
+        <a id="next-link" class="button is-ghost"><span>next</span><span class="icon"><i class="fas fa-caret-right"></i></span></a>
+      </div>
+      <nav class="breadcrumb is-centered has-succeeds-separator" aria-label="breadcrumbs" id="breadcrumb"><!-- JS will inject breadcrumb --></nav>
       <figure itemscope representativeOfPage="true" itemtype="http://schema.org/ImageObject">
-        <img class="has-frame" src="{{ .Site.Params.photosBaseURL }}{{ .Params.image_xl }}.jpg" alt="{{ .Title }}" width="{{ .Params.image_width_xl }}" height="{{ .Params.image_height_xl }}">
+        <img class="has-frame photo-full" src="{{ .Site.Params.photosBaseURL }}{{ .Params.image_xl }}.jpg" alt="{{ .Title }}" width="{{ .Params.image_width_xl }}" height="{{ .Params.image_height_xl }}">
         <figcaption itemprop="caption description" style="display: none;">{{ .Description }}</figcaption>
       </figure>
       <header>
