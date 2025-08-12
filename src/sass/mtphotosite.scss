@@ -1,0 +1,142 @@
+@charset "utf-8";
+
+///////////////
+// Fonts
+///////////////
+
+/* atkinson hyperlegible next -regular - latin */
+@font-face {
+  font-family: 'Atkinson Hyperlegible';
+  font-style: normal;
+  font-weight: 400;
+  src: local('');
+  src: url('/fonts/AtkinsonHyperlegibleNext-Regular.woff2') format('woff2');
+}
+
+/* atkinson hyperlegible next -bold - latin */
+@font-face {
+  font-family: 'Atkinson Hyperlegible';
+  font-style: normal;
+  font-weight: 700;
+  src: local('');
+  src: url('/fonts/AtkinsonHyperlegibleNext-Bold.woff2') format('woff2');
+}
+
+/* nothing-you-could-do-regular - latin */
+@font-face {
+  font-family: 'Nothing You Could Do';
+  font-style: normal;
+  font-weight: 400;
+  src: local('');
+  src: url('/fonts/nothing-you-could-do-v10-latin-regular.woff2') format('woff2'); /* Chrome 26+, Opera 23+, Firefox 39+ */
+  src: url('/fonts/nothing-you-could-do-v10-latin-regular.woff') format('woff');   /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
+///////////////////////
+// Bulma initial import
+///////////////////////
+@import "bulma/sass/utilities/initial-variables";
+
+///////////////////
+// My Bulma configs
+///////////////////
+
+// Colors
+$background: $grey;
+$body-background-color: $background;
+$content-blockquote-background-color: $grey-dark;
+$footer-background-color: $grey-dark;
+$link-color: hsl(43, 74%, 66%);
+$link-color-visited: hsl(41, 100%, 27%);
+$link: $link-color;
+$navbar-background-color: $grey-dark;
+$navbar-item-hover-background-color: $grey-dark;
+$navbar-item-color: $grey-light;
+$primary: $grey-light;
+$text: $grey-lighter;
+$text-light: $white-ter;
+$text-strong: $grey-light;
+
+// Fonts
+$family-logo: "Nothing You Could Do";
+$family-sans-serif: "Atkinson Hyperlegible", sans-serif;
+$family-primary: "Atkinson Hyperlegible", sans-serif;
+$title-family: $family-sans-serif;
+$subtitle-family: $family-sans-serif;
+
+// Import the rest of Bulma
+@import "bulma/sass/utilities/_all";
+@import "bulma/sass/base/_all";
+@import "bulma/sass/helpers/_all";
+@import "bulma/sass/elements/button";
+@import "bulma/sass/elements/content";
+@import "bulma/sass/elements/container";
+@import "bulma/sass/elements/icon";
+@import "bulma/sass/elements/image";
+@import "bulma/sass/elements/tag";
+@import "bulma/sass/elements/title";
+@import "bulma/sass/components/breadcrumb";
+@import "bulma/sass/components/media";
+@import "bulma/sass/components/navbar";
+@import "bulma/sass/grid/columns";
+@import "bulma/sass/layout/footer";
+@import "bulma/sass/layout/hero";
+@import "bulma/sass/layout/section";
+
+///////////////////////
+// Override Bulma style
+///////////////////////
+
+// Site title
+#logo {
+  font-family: $family-logo;
+  font-size: $size-3;
+
+  @include mobile {
+    font-size: $size-5;
+  }
+}
+
+// Photo frames & step wedge
+figure {
+  img {
+    &.has-frame,
+    &.has-frame-gallery {
+      outline: 0.4rem solid hsl(0, 0%, 98%);
+      margin: 0.8rem;
+    }
+
+    &#step-wedge {
+      outline: 0.5rem solid $grey;
+    }
+  }
+}
+
+// Responsive image styling
+.photo-full {
+  max-width: 85%; // never wider than the container
+}
+
+// Medium screens and up (tablets, small laptops)
+@media (min-width: 768px) {
+  .photo-full {
+    max-width: 90%;
+  }
+
+  figure img.has-frame {
+    outline: 0.763rem solid hsl(0, 0%, 98%);
+    margin: 1.4rem;
+  }
+}
+
+// Large screens (desktops and bigger)
+@media (min-width: 1024px) {
+  .photo-full {
+    max-width: 100%;
+  }
+
+  figure img.has-frame {
+    outline: 1.125rem solid hsl(0, 0%, 98%);
+    margin: 2rem;
+  }
+}

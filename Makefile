@@ -2,7 +2,7 @@
 # Web Site Build Makefile
 #========================
 
-css-prereq      = ./src/sass/mtphotosite.sass
+css-prereq      = ./src/sass/mtphotosite.scss
 # Dart Saas
 css-proc        = sass
 css-target      = ./static/css/mtphotosite.min.css
