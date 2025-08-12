@@ -3,8 +3,6 @@
   <section class="hero">
     <div class="hero-body container has-text-centered">
       <div class="nav-links">
-        <a id="prev-link" class="button is-ghost"><span class="icon"><i class="fas fa-caret-left"></i></span><span>prev</span></a>
-        <a id="next-link" class="button is-ghost"><span>next</span><span class="icon"><i class="fas fa-caret-right"></i></span></a>
       </div>
       <nav class="breadcrumb is-centered has-succeeds-separator" aria-label="breadcrumbs" id="breadcrumb"><!-- JS will inject breadcrumb --></nav>
       <figure itemscope representativeOfPage="true" itemtype="http://schema.org/ImageObject">
@@ -14,12 +12,12 @@
       <header>
         <h1 class="title is-4">{{ .Title }}</h1>
         <button class="button is-ghost" id="toggle-info">
-          <span>show photo info</span>
+          <span>photo info below</span>
         </button>
       </header>
     </div>
   </section>
-  <section class="section is-hidden" id="photo-info">
+  <section class="section" id="photo-info">
     <div class="container is-family-sans-serif">
       {{ if (ne .Params.description "") }}
       <div class="media">

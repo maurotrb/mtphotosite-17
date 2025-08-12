@@ -98,8 +98,8 @@ $subtitle-family: $family-sans-serif
 figure
   img
     &.has-frame
-      outline: 1.125rem solid hsl(0, 0%, 98%)
-      margin: 2rem
+      outline: .4rem solid hsl(0, 0%, 98%)
+      margin: .8rem
   img
     &.has-frame-gallery
       outline: .4rem solid hsl(0, 0%, 98%)
@@ -119,8 +119,18 @@ figure
 @media (min-width: 768px)
   .photo-full
     max-width: 90%
+  figure
+    img
+      &.has-frame
+        outline: .763rem solid hsl(0, 0%, 98%)
+        margin: 1.4rem
 
 // Large screens (desktops and bigger)
 @media (min-width: 1024px)
   .photo-full
     max-width: 100%
+  figure
+    img
+      &.has-frame
+        outline: 1.125rem solid hsl(0, 0%, 98%)
+        margin: 2rem

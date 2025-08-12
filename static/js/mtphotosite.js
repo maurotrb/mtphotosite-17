@@ -1,5 +1,6 @@
 'use strict';
 
+// Listener with various actions
 document.addEventListener('DOMContentLoaded', function () {
 
   //// NAVBAR BURGER ////
@@ -26,17 +27,21 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   //// PHOTO INFO BUTTON ////
-  const button = document.getElementById("toggle-info");
-  const info = document.getElementById("photo-info");
+  const infoBtn = document.getElementById("toggle-info");
+  const infoSect = document.getElementById("photo-info");
 
-  if (button && info) {
-    button.addEventListener("click", () => {
-      info.classList.toggle("is-hidden");
-      const span = button.querySelector("span:last-child");
-      if (info.classList.contains("is-hidden")) {
-        span.textContent = "show photo info";
+  if (infoBtn && infoSect) {
+    // Initially hide the info when JS is enabled
+    infoBtn.textContent = "show photo info";
+    infoSect.classList.add("is-hidden");
+
+    // Toggle photo info section on/off
+    infoBtn.addEventListener("click", () => {
+      infoSect.classList.toggle("is-hidden");
+      if (infoSect.classList.contains("is-hidden")) {
+        infoBtn.textContent = "show photo info";
       } else {
-        span.textContent = "hide photo info";
+        infoBtn.textContent = "hide photo info";
       }
     });
   }
