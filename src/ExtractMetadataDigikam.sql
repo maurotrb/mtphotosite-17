@@ -81,20 +81,12 @@ SELECT    REPLACE(I.NAME, '.' || REPLACE(I.NAME, RTRIM(I.NAME, REPLACE(I.NAME, '
           IP.longitudeNumber AS gps_longitude,
           ITIT.title,
           ICAP.caption,
-          strftime('%Y-%m-%d', II.creationDate)
-                    || '|'
-                    || strftime('%Y-%m', II.creationDate)
-                    || '|'
-                    || strftime('%Y', II.creationDate)
-                    ||
                CASE
                     WHEN IPT.groupedtags = ''
                     OR        IPT.groupedtags IS NULL THEN ''
                     ELSE '|'
                                      || IPT.groupedtags
                END AS export_tags,
-          strftime('%Y Timeline', II.creationDate)
-                    ||
                CASE
                     WHEN IGT.groupedtags = ''
                     OR        IGT.groupedtags IS NULL THEN ''

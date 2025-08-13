@@ -5,18 +5,24 @@
 <main>
   <header class="section">
     <h1 class="title is-1">{{ .Title }} ({{ len .Data.Pages }} photos)</h1>
+    <h2 class="title is-6">All photos in this gallery, organized by year and month, from newest to oldest</h2>
   </header>
   {{ if .Content }}
   <section class="section">
     <div class="content">{{ .Content }}</div>
   </section>
   {{ end }}
+  {{ range .Data.Pages.GroupByDate "January 2006" }}
+  <header class="section has-text-centered">
+    <h3 class="title is-3">{{ .Key }} ({{ len .Pages }} photos)</h3>
+  </header>
   <section class="section" itemscope itemtype="http://schema.org/ImageGallery">
     <div class="columns is-centered is-vcentered is-multiline">
-      {{ range .Data.Pages.ByDate.Reverse }}
+      {{ range .Pages.ByDate.Reverse }}
       {{ partial "photo-thumb.html" (dict "content" . "photosBaseURL" $photosBaseURL "contextType" $contextType "contextName" $contextName) }}
       {{ end }}
     </div>
   </section>
+  {{ end }}
 </main>
 {{ end }}

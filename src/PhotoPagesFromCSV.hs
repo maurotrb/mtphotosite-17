@@ -139,7 +139,7 @@ mergeToIpsmMap = Map.intersectionWithKey wmatch
 mergeToFmMap :: IdmMap -> IpsmMap -> FmMap
 mergeToFmMap = Map.intersectionWithKey wmatch
   where
-    wmatch  i (IDM im ct glat glon t cap tags gals) (IPSM is iws ihs ixl iwxl ihxl) = FM t cap ct im is iws ihs ixl iwxl ihxl glat glon ((sort . delete "" . nub) $ T.splitOn "|" gals) ((sort . nub) $ T.splitOn "|" tags)
+    wmatch  i (IDM im ct glat glon t cap tags gals) (IPSM is iws ihs ixl iwxl ihxl) = FM t cap ct im is iws ihs ixl iwxl ihxl glat glon ((sort . delete "" . nub) $ T.splitOn "|" gals) ((sort . delete "" . nub) $ T.splitOn "|" tags)
 
 toFM :: V.Vector ImageDigikamMetadata -> V.Vector ImagePixelSize -> V.Vector FrontMatter
 toFM idmd ips = Map.foldl' V.snoc V.empty

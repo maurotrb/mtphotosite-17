@@ -37,6 +37,7 @@
           {{ .Date.Format "02 Jan 2006" }}
         </div>
       </div>
+      {{ if (len (index .Params.galleries 0)) }}
       <div class="media">
         <div class="media-left">
           <span class="icon"><i class="fas fa-th-large"></i></span>
@@ -49,6 +50,8 @@
           </div>
         </div>
       </div>
+      {{ end }}
+      {{ if (len (index .Params.phototags 0)) }}
       <div class="media">
         <div class="media-left">
           <span class="icon"><i class="fas fa-tags"></i></span>
@@ -61,6 +64,7 @@
           </div>
         </div>
       </div>
+      {{ end }}
       {{ if (and (isset .Params "gps_latitude") (ne .Params.gps_latitude "")) }}
       <div class="media">
         <div class="media-left">
