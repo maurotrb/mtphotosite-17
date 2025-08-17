@@ -1,4 +1,7 @@
 {{ define "main" }}
+{{ $photosBaseURL := .Site.Params.photosBaseURL }}
+{{ $contextType := "photos" }}
+{{ $contextName := "photos" }}
 <main>
   <header class="section">
     <h1 class="title is-1">{{ len .Data.Pages }} {{ .Title }}</h1>
@@ -16,7 +19,7 @@
   <section class="section" itemscope itemtype="http://schema.org/ImageGallery">
     <div class="columns is-multiline is-vcentered">
       {{ range .Pages.ByDate.Reverse }}
-      {{ partial "photo-thumb.html" (dict "content" . "photosBaseURL" .Site.Params.photosBaseURL) }}
+      {{ partial "photo-thumb.html" (dict "content" . "photosBaseURL" $photosBaseURL "contextType" $contextType "contextName" $contextName) }}
       {{ end }}
     </div>
   </section>

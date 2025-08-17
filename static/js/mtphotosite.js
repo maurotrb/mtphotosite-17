@@ -76,6 +76,17 @@ document.addEventListener('DOMContentLoaded', function () {
               <li class="is-active"><a aria-current="page">${list[index].title}</a></li>
             </ul>
           `;
+        } else if (ctx.contextType === 'photos') {
+          // Galleries / Tags normal 3-level breadcrumb
+          breadcrumb.innerHTML = `
+            <ul>
+              <li><a href="/">home</a></li>
+              <li><a href="/photos">photos</a></li>
+              <li class="is-active"><a aria-current="page">
+                ${list[index].title}
+              </a></li>
+            </ul>
+          `;
         } else {
           // Galleries / Tags normal 3-level breadcrumb
           breadcrumb.innerHTML = `
@@ -160,6 +171,8 @@ document.querySelectorAll('a.photo-link').forEach(link => {
 
     if (contextType === 'home') {
       jsonUrl = '/index.json'; // virtual home/featured list
+    } else if (contextType === 'photos') {
+      jsonUrl = `/${contextType}/index.json`;
     } else {
       jsonUrl = `/${contextType}/${contextName}/index.json`;
     }

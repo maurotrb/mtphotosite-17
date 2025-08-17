@@ -22,7 +22,7 @@ email = 'mauro@maurotaraborelliphoto.com'
 [outputs]
   home = ['html', 'json']
   page = ['html']
-  section = ['html']
+  section = ['html', 'json']
   taxonomy = ['html']
   term = ['html', 'json']
 
